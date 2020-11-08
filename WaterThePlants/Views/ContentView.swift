@@ -10,8 +10,8 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @FetchRequest(entity: Task.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Task.name, ascending: true)],
         animation: .default)
     private var tasks: FetchedResults<Task>
@@ -26,11 +26,13 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
+
             .toolbar {
                 HStack {
                     Button(action: {showTaskDetail = true}) {
                         Label("Add Task", systemImage: "plus")
                     }
+                    Text("tasks: \(tasks.count)")
                 }
                 
         }

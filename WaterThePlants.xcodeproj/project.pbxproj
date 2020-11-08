@@ -25,6 +25,7 @@
 		9397DFF7255728770051BE06 /* TimePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397DFF6255728770051BE06 /* TimePart.swift */; };
 		9397E0052557FF390051BE06 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E0042557FF390051BE06 /* TaskDetailView.swift */; };
 		9397E00A2557FFC30051BE06 /* TaskError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E0092557FFC30051BE06 /* TaskError.swift */; };
+		9397E01425580E950051BE06 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9397E01325580E950051BE06 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		9397DFF6255728770051BE06 /* TimePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePart.swift; sourceTree = "<group>"; };
 		9397E0042557FF390051BE06 /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
 		9397E0092557FFC30051BE06 /* TaskError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskError.swift; sourceTree = "<group>"; };
+		9397E00E25580E8C0051BE06 /* WaterThePlants.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterThePlants.entitlements; sourceTree = "<group>"; };
+		9397E01325580E950051BE06 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9397E01425580E950051BE06 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +107,7 @@
 				9397DFA5255718A80051BE06 /* WaterThePlantsTests */,
 				9397DFB0255718A80051BE06 /* WaterThePlantsUITests */,
 				9397DF8D255718A50051BE06 /* Products */,
+				9397E01225580E950051BE06 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +124,7 @@
 		9397DF8E255718A50051BE06 /* WaterThePlants */ = {
 			isa = PBXGroup;
 			children = (
+				9397E00E25580E8C0051BE06 /* WaterThePlants.entitlements */,
 				9397DF9D255718A80051BE06 /* Info.plist */,
 				9397DFD725571E660051BE06 /* Controller */,
 				9397DFD625571E480051BE06 /* Views */,
@@ -196,6 +202,14 @@
 				9397E0092557FFC30051BE06 /* TaskError.swift */,
 			);
 			path = enums;
+			sourceTree = "<group>";
+		};
+		9397E01225580E950051BE06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9397E01325580E950051BE06 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -497,6 +511,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WaterThePlants/WaterThePlants.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WaterThePlants/Preview Content\"";
 				DEVELOPMENT_TEAM = KQFV358W5W;
@@ -519,6 +534,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WaterThePlants/WaterThePlants.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WaterThePlants/Preview Content\"";
 				DEVELOPMENT_TEAM = KQFV358W5W;
