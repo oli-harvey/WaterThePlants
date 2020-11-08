@@ -10,14 +10,12 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-//    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @FetchRequest(entity: Task.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Task.name, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Task.due, ascending: true)],
         animation: .default)
     private var tasks: FetchedResults<Task>
     
     @State var showTaskDetail = false
- //   @State var updateTrigger = false
 
     var body: some View {
         NavigationView {
