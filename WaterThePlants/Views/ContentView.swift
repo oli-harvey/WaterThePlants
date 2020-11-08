@@ -10,19 +10,20 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+//    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @FetchRequest(entity: Task.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Task.name, ascending: true)],
         animation: .default)
     private var tasks: FetchedResults<Task>
     
     @State var showTaskDetail = false
+ //   @State var updateTrigger = false
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(tasks) { task in
-                    Text("task \(task.name)")
+                    ProgressView(task: task)
                 }
                 .onDelete(perform: deleteItems)
             }
@@ -40,6 +41,11 @@ struct ContentView: View {
         .sheet(isPresented: $showTaskDetail) {
             TaskDetailView()
         }
+//        .onReceive(timer) { time in
+//            self.updateTrigger.toggle()
+//
+//            
+//        }
     }
 
 

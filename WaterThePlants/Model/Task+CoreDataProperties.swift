@@ -52,7 +52,7 @@ extension Task {
     }
     var taskStatus: TaskStatus {
         get {
-            return TaskStatus(rawValue: self.taskStatusValue)!
+            return TaskStatus(rawValue: self.taskStatusValue) ?? TaskStatus.running
         }
         set {
             self.taskStatusValue = newValue.rawValue
@@ -62,7 +62,7 @@ extension Task {
 
 extension Task {
     var timeElapsed: TimeInterval {
-        due.timeIntervalSince(lastComplete)
+        Date().timeIntervalSince(lastComplete)
     }
     var timeRemaining: TimeInterval {
         due.timeIntervalSince(Date())
@@ -88,5 +88,23 @@ extension Task {
             return timeRemaining.format()
         }
     }
+    var lastCompleteTimeSince: TimeInterval {
+        Date().timeIntervalSince(lastComplete)
+    }
 
+}
+
+extension Task {
+    func taskDone() {
+        timesCompleted += 1
+        lastComplete = Date()
+        if timesCompleted >= repetitions {
+            taskStatus = .done
+        } else {
+            taskStatus = .running
+        }
+    }
+    func setToCancelled() {
+        taskStatus = .cancelled
+    }
 }

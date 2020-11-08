@@ -26,6 +26,11 @@
 		9397E0052557FF390051BE06 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E0042557FF390051BE06 /* TaskDetailView.swift */; };
 		9397E00A2557FFC30051BE06 /* TaskError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E0092557FFC30051BE06 /* TaskError.swift */; };
 		9397E01425580E950051BE06 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9397E01325580E950051BE06 /* CloudKit.framework */; };
+		9397E01F255861720051BE06 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E01E255861720051BE06 /* ProgressBar.swift */; };
+		9397E024255861E80051BE06 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E023255861E80051BE06 /* ProgressView.swift */; };
+		9397E02C255862500051BE06 /* TaskControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E02B255862500051BE06 /* TaskControls.swift */; };
+		9397E031255869E20051BE06 /* ProgressText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E030255869E20051BE06 /* ProgressText.swift */; };
+		9397E03625586D210051BE06 /* TaskViewStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E03525586D210051BE06 /* TaskViewStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +77,11 @@
 		9397E0092557FFC30051BE06 /* TaskError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskError.swift; sourceTree = "<group>"; };
 		9397E00E25580E8C0051BE06 /* WaterThePlants.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterThePlants.entitlements; sourceTree = "<group>"; };
 		9397E01325580E950051BE06 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		9397E01E255861720051BE06 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		9397E023255861E80051BE06 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		9397E02B255862500051BE06 /* TaskControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskControls.swift; sourceTree = "<group>"; };
+		9397E030255869E20051BE06 /* ProgressText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressText.swift; sourceTree = "<group>"; };
+		9397E03525586D210051BE06 /* TaskViewStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +189,10 @@
 			children = (
 				9397DF91255718A50051BE06 /* ContentView.swift */,
 				9397E0042557FF390051BE06 /* TaskDetailView.swift */,
+				9397E01E255861720051BE06 /* ProgressBar.swift */,
+				9397E023255861E80051BE06 /* ProgressView.swift */,
+				9397E030255869E20051BE06 /* ProgressText.swift */,
+				9397E02B255862500051BE06 /* TaskControls.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -200,6 +214,7 @@
 				9397DFF12557285D0051BE06 /* DueType.swift */,
 				9397DFF6255728770051BE06 /* TimePart.swift */,
 				9397E0092557FFC30051BE06 /* TaskError.swift */,
+				9397E03525586D210051BE06 /* TaskViewStatus.swift */,
 			);
 			path = enums;
 			sourceTree = "<group>";
@@ -343,6 +358,7 @@
 			files = (
 				9397E0052557FF390051BE06 /* TaskDetailView.swift in Sources */,
 				9397DFE325571F350051BE06 /* RepetitionStatus.swift in Sources */,
+				9397E01F255861720051BE06 /* ProgressBar.swift in Sources */,
 				9397DFED25571FE40051BE06 /* Date.swift in Sources */,
 				9397E00A2557FFC30051BE06 /* TaskError.swift in Sources */,
 				9397DFE825571FC60051BE06 /* TimeInterval.swift in Sources */,
@@ -351,10 +367,14 @@
 				9397DFCA25571E170051BE06 /* Task+CoreDataClass.swift in Sources */,
 				9397DF9C255718A80051BE06 /* WaterThePlants.xcdatamodeld in Sources */,
 				9397DFDB25571EF90051BE06 /* TaskStatus.swift in Sources */,
+				9397E03625586D210051BE06 /* TaskViewStatus.swift in Sources */,
 				9397DFF22557285D0051BE06 /* DueType.swift in Sources */,
 				9397DF92255718A50051BE06 /* ContentView.swift in Sources */,
+				9397E024255861E80051BE06 /* ProgressView.swift in Sources */,
 				9397DFCB25571E170051BE06 /* Task+CoreDataProperties.swift in Sources */,
+				9397E02C255862500051BE06 /* TaskControls.swift in Sources */,
 				9397DF90255718A50051BE06 /* WaterThePlantsApp.swift in Sources */,
+				9397E031255869E20051BE06 /* ProgressText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

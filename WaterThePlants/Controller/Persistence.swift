@@ -15,6 +15,15 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
             let newItem = Task(context: viewContext)
+            newItem.name = "Example Task"
+            newItem.due = Date()
+            newItem.dueEveryAmount = 1
+            newItem.dueEvery = TimePart.day
+            newItem.lastComplete = Date()
+            newItem.repetitions = 1
+            newItem.repetitionStatus = RepetitionStatus.forever
+            newItem.taskStatus = TaskStatus.running
+            newItem.timesCompleted = 0
         }
         do {
             try viewContext.save()
