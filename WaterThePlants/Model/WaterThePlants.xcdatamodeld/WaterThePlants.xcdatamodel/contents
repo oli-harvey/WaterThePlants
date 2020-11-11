@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Task" representedClassName="Task" syncable="YES">
-        <attribute name="due" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="dueEveryAmount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="dueEveryValue" optional="YES" attributeType="String"/>
-        <attribute name="lastComplete" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="repetitions" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="repetitionStatusValue" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="taskStatusValue" optional="YES" attributeType="String"/>
-        <attribute name="timesCompleted" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="due" optional="YES" attributeType="Date" defaultDateTimeInterval="626814720" usesScalarValueType="NO"/>
+        <attribute name="dueEveryAmount" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="dueEveryValue" optional="YES" attributeType="String" defaultValueString=""/>
+        <attribute name="lastComplete" optional="YES" attributeType="Date" defaultDateTimeInterval="626814720" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString=""/>
+        <attribute name="repetitions" optional="YES" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="repetitionStatusValue" optional="YES" attributeType="Integer 32" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="taskStatusValue" optional="YES" attributeType="String" defaultValueString="Running"/>
+        <attribute name="timesCompleted" optional="YES" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="Task" positionX="-63" positionY="-18" width="128" height="178"/>
