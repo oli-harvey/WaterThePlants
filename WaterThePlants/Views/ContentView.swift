@@ -16,12 +16,14 @@ struct ContentView: View {
     private var tasks: FetchedResults<Task>
     
     @State var showTaskDetail = false
+    @State var dummy = false
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(tasks) { task in
-                    ProgressView(task: task)
+                    ProgressView(task: task, dummy: $dummy)
                 }
                 .onDelete(perform: deleteItems)
             }
@@ -39,11 +41,11 @@ struct ContentView: View {
         .sheet(isPresented: $showTaskDetail) {
             TaskDetailView()
         }
-//        .onReceive(timer) { time in
-//            self.updateTrigger.toggle()
-//
-//            
-//        }
+        .onReceive(timer) { input in
+            self.dummy.toggle()
+            print(input)
+        }
+        .foregroundColor(dummy ? .blue : .blue)
     }
 
 

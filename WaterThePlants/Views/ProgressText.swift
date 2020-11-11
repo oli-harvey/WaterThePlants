@@ -3,6 +3,7 @@ import SwiftUI
 struct ProgressText: View {
    var task: Task
    @Binding var status: TaskViewStatus
+   @Binding var dummy: Bool
     
     var body: some View {
         VStack {
@@ -30,6 +31,7 @@ struct ProgressText: View {
                 .font(.caption)
         }
         .padding(0)
+        .foregroundColor(dummy ? .blue : .blue)
     }
 }
 

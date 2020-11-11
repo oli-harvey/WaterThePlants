@@ -3,6 +3,7 @@ import SwiftUI
 struct ProgressBar: View {
     var task: Task
     @State private var status: TaskViewStatus = .normal
+    @Binding var dummy: Bool
 
     var body: some View {
         ZStack {
@@ -19,5 +20,6 @@ struct ProgressBar: View {
                 .animation(.linear)
         }
         .contentShape(Circle())
+        .foregroundColor(dummy ? .blue : .blue)
     }
 }
