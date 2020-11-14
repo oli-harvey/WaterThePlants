@@ -17,7 +17,6 @@ struct ContentView: View {
     
     @State var showTaskDetail = false
     @State var dummy = false
-    @State var deleteInProgress = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -44,10 +43,7 @@ struct ContentView: View {
             TaskDetailView()
         }
         .onReceive(timer) { input in
-            if !deleteInProgress {
-                self.dummy.toggle()
-            }
-            deleteInProgress = false
+            self.dummy.toggle()
         }
         .foregroundColor(dummy ? .primary : .primary)
     }
@@ -55,8 +51,6 @@ struct ContentView: View {
 
 
     private func deleteItems(offsets: IndexSet) {
-        deleteInProgress = true
-        
         withAnimation {
             offsets.map { tasks[$0] }.forEach(viewContext.delete)
 
