@@ -46,11 +46,10 @@ struct ContentView: View {
         .onReceive(timer) { input in
             if !deleteInProgress {
                 self.dummy.toggle()
-            } else {
-                deleteInProgress = true
             }
+            deleteInProgress = false
         }
-        .foregroundColor(dummy ? .blue : .blue)
+        .foregroundColor(dummy ? .primary : .primary)
     }
 
 
@@ -68,6 +67,7 @@ struct ContentView: View {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
+        
     }
 }
 

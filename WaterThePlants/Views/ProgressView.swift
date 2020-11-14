@@ -7,7 +7,7 @@ struct ProgressView: View {
     
     var body: some View {
         VStack {
-            Text(task.name)
+            Text(task.name ?? "No Task")
                 .font(.title)
             ZStack {
                 ProgressBar(task: task, dummy: $dummy)

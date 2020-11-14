@@ -13,7 +13,7 @@ struct ProgressText: View {
                         
                 }
                 VStack(alignment: .leading) {
-                    Text(task.due.dateTimeString())
+                    Text(task.due?.dateTimeString() ?? Date().dateTimeString())
                     Text(task.completionDescTime)
                 }
             }
@@ -24,7 +24,7 @@ struct ProgressText: View {
                     Text("   ")
                 }
                 VStack(alignment: .leading) {
-                    Text(task.lastComplete.dateTimeString())
+                    Text(task.lastComplete?.dateTimeString() ?? Date().dateTimeString())
                     Text(task.lastCompleteTimeSince.format())
                 }
             }

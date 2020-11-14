@@ -17,14 +17,14 @@ extension Task {
         return NSFetchRequest<Task>(entityName: "Task")
     }
 
-    @NSManaged public var due: Date
+    @NSManaged public var due: Date?
     @NSManaged public var dueEveryAmount: Int64
-    @NSManaged public var dueEveryValue: String
-    @NSManaged public var lastComplete: Date
-    @NSManaged public var name: String
+    @NSManaged public var dueEveryValue: String?
+    @NSManaged public var lastComplete: Date?
+    @NSManaged public var name: String?
     @NSManaged public var repetitions: Int64
     @NSManaged public var repetitionStatusValue: Int32
-    @NSManaged public var taskStatusValue: String
+    @NSManaged public var taskStatusValue: String?
     @NSManaged public var timesCompleted: Int64
 }
 
@@ -44,7 +44,7 @@ extension Task {
     }
     var dueEvery: TimePart {
         get {
-            return TimePart(rawValue: self.dueEveryValue)!
+            return TimePart(rawValue: self.dueEveryValue ?? "Day")!
         }
         set {
             self.dueEveryValue = newValue.rawValue
@@ -52,7 +52,7 @@ extension Task {
     }
     var taskStatus: TaskStatus {
         get {
-            return TaskStatus(rawValue: self.taskStatusValue) ?? TaskStatus.running
+            return TaskStatus(rawValue: self.taskStatusValue ?? "Running") ?? TaskStatus.running
         }
         set {
             self.taskStatusValue = newValue.rawValue
@@ -62,13 +62,13 @@ extension Task {
 
 extension Task {
     var timeElapsed: TimeInterval {
-        Date().timeIntervalSince(lastComplete)
+        Date().timeIntervalSince(lastComplete ?? Date())
     }
     var timeRemaining: TimeInterval {
-        due.timeIntervalSince(Date())
+        due?.timeIntervalSince(Date()) ?? TimeInterval(100)
     }
     var totalTime: TimeInterval {
-        due.timeIntervalSince(lastComplete)
+        due?.timeIntervalSince(lastComplete ?? Date()) ?? TimeInterval(100)
     }
     var percentComplete: CGFloat {
         CGFloat(timeElapsed / totalTime)
@@ -89,7 +89,7 @@ extension Task {
         }
     }
     var lastCompleteTimeSince: TimeInterval {
-        Date().timeIntervalSince(lastComplete)
+        Date().timeIntervalSince(lastComplete ?? Date())
     }
 
 }
