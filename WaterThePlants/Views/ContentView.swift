@@ -49,7 +49,7 @@ struct ContentView: View {
 
 
 
-    private func deleteItems(offsets: IndexSet) {
+    func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { tasks[$0] }.forEach(viewContext.delete)
 

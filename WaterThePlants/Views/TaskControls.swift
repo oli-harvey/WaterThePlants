@@ -17,6 +17,7 @@ struct TaskControls: View {
                 }
                 .shadow(color: .black, radius: 1)
                 .padding()
+                .clipped()
         }
     }
 }

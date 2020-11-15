@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 import SwiftUI
-
+import UserNotifications
 
 extension Task {
 
@@ -106,5 +106,39 @@ extension Task {
     }
     func setToCancelled() {
         taskStatus = .cancelled
+    }
+}
+
+extension Task {
+    func scheduleNotification() {
+        let center = UNUserNotificationCenter.current()
+
+            let addRequest = {
+                let content = UNMutableNotificationContent()
+                content.title = "Task due: \(self.name ?? "Unknown Task")"
+                content.subtitle = "at: \(self.due?.timeString() ?? "Unknown Time")"
+                content.sound = UNNotificationSound.default
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.timeRemaining, repeats: false)
+
+
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                center.add(request)
+            }
+        
+        center.getNotificationSettings { settings in
+            if settings.authorizationStatus == .authorized {
+                addRequest()
+            } else {
+                center.requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                    if success {
+                        addRequest()
+                    } else {
+                        print("D'oh")
+                    }
+                }
+            }
+        }
+
     }
 }

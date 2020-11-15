@@ -152,8 +152,8 @@ struct TaskDetailView: View {
             newTask.dueEveryAmount = self.dueEveryAmount
 
             do {
-                
                 try viewContext.save()
+                newTask.scheduleNotification()
             } catch let error as TaskError {
                 self.error = error
                 self.showingError = true
