@@ -30,14 +30,13 @@ struct ContentView: View {
             }
 
             .toolbar {
-                HStack {
-                    Button(action: {showTaskDetail = true}) {
-                        Label("Add Task", systemImage: "plus")
-                    }
-                    Text("tasks: \(tasks.count)")
+                Button(action: {showTaskDetail = true}) {
+                    Label("Add Task", systemImage: "plus")
+                        .font(.largeTitle)
                 }
                 
         }
+            .navigationTitle("Water the Plants")
         } // NavigationView
         .sheet(isPresented: $showTaskDetail) {
             TaskDetailView()
