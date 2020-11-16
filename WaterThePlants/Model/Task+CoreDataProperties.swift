@@ -78,12 +78,12 @@ extension Task {
     }
     var completionDescTime: String {
         switch taskStatus {
-        case .due:
-            return "Due"
-        case .cancelled:
-            return "Cancelled"
+//        case .due:
+//            return "Due"
+//        case .cancelled:
+//            return "Cancelled"
         case .done:
-            return "Doné"
+            return "Done"
         default:
             return timeRemaining.format()
         }
@@ -104,9 +104,9 @@ extension Task {
             taskStatus = .running
         }
     }
-    func setToCancelled() {
-        taskStatus = .cancelled
-    }
+//    func setToCancelled() {
+//        taskStatus = .cancelled
+//    }
 }
 
 extension Task {

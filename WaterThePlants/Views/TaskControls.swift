@@ -14,10 +14,11 @@ struct TaskControls: View {
                     Image(systemName: "checkmark.circle")
                         .font(.largeTitle)
                         .foregroundColor(.green)
+                        .clipped()
+                        .shadow(color: .black, radius: 1)
+                        .padding()
                 }
-                .shadow(color: .black, radius: 1)
-                .padding()
-                .clipped()
         }
+        .buttonStyle(PlainButtonStyle())
     }
 }
