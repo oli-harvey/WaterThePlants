@@ -10,11 +10,7 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: Task.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Task.due, ascending: true)],
-        animation: .default)
-    private var tasks: FetchedResults<Task>
-    
+    @State var showingTaskStatus: TaskStatus = .running
     @State var showTaskDetail = false
     @State var dummy = false
     
@@ -22,13 +18,17 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(tasks) { task in
-                    ProgressView(task: task, dummy: $dummy)
+            VStack {
+                Text(showingTaskStatus.rawValue)
+                Picker("Task Status", selection: $showingTaskStatus) {
+                    ForEach(TaskStatus.allCases, id: \.self) { status in
+                        Text(status.rawValue)
+                    }
                 }
-                .onDelete(perform: deleteItems)
-            }
+                    .pickerStyle(SegmentedPickerStyle())
+                FilteredList(filter: showingTaskStatus.rawValue, dummy: $dummy)
 
+            }
             .toolbar {
                 Button(action: {showTaskDetail = true}) {
                     Label("Add Task", systemImage: "plus")
@@ -45,22 +45,6 @@ struct ContentView: View {
             self.dummy.toggle()
         }
         .foregroundColor(dummy ? .primary : .primary)
-    }
-
-
-
-    func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { tasks[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-        
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9394E4102563056F00CB8328 /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394E40F2563056F00CB8328 /* FilteredList.swift */; };
 		9397DF90255718A50051BE06 /* WaterThePlantsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397DF8F255718A50051BE06 /* WaterThePlantsApp.swift */; };
 		9397DF92255718A50051BE06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397DF91255718A50051BE06 /* ContentView.swift */; };
 		9397DF94255718A80051BE06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9397DF93255718A80051BE06 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9394E40F2563056F00CB8328 /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 		9397DF8C255718A50051BE06 /* WaterThePlants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterThePlants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9397DF8F255718A50051BE06 /* WaterThePlantsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterThePlantsApp.swift; sourceTree = "<group>"; };
 		9397DF91255718A50051BE06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				9397DF91255718A50051BE06 /* ContentView.swift */,
+				9394E40F2563056F00CB8328 /* FilteredList.swift */,
 				9397E0042557FF390051BE06 /* TaskDetailView.swift */,
 				9397E01E255861720051BE06 /* ProgressBar.swift */,
 				9397E023255861E80051BE06 /* ProgressView.swift */,
@@ -368,6 +371,7 @@
 				9397DF9C255718A80051BE06 /* WaterThePlants.xcdatamodeld in Sources */,
 				9397DFDB25571EF90051BE06 /* TaskStatus.swift in Sources */,
 				9397E03625586D210051BE06 /* TaskViewStatus.swift in Sources */,
+				9394E4102563056F00CB8328 /* FilteredList.swift in Sources */,
 				9397DFF22557285D0051BE06 /* DueType.swift in Sources */,
 				9397DF92255718A50051BE06 /* ContentView.swift in Sources */,
 				9397E024255861E80051BE06 /* ProgressView.swift in Sources */,
