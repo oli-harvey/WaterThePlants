@@ -19,11 +19,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text(showingTaskStatus.rawValue)
                 Picker("Task Status", selection: $showingTaskStatus) {
                     ForEach(TaskStatus.allCases, id: \.self) { status in
                         Text(status.rawValue)
                     }
+                    .padding()
                 }
                     .pickerStyle(SegmentedPickerStyle())
                 FilteredList(filter: showingTaskStatus.rawValue, dummy: $dummy)
@@ -41,6 +41,7 @@ struct ContentView: View {
         .sheet(isPresented: $showTaskDetail) {
             TaskDetailView()
         }
+
         .onReceive(timer) { input in
             self.dummy.toggle()
         }

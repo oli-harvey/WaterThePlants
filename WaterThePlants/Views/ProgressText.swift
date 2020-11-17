@@ -17,7 +17,6 @@ struct ProgressText: View {
                     Text(task.completionDescTime)
                 }
             }
-                .font(.caption)
             HStack {
                 VStack(alignment: .trailing) {
                     Text("last:")
@@ -28,10 +27,9 @@ struct ProgressText: View {
                     Text(task.lastCompleteTimeSince.format())
                 }
             }
-                .font(.caption)
         }
-        .padding(0)
-        .foregroundColor(dummy ? .blue : .blue)
+        .font(.subheadline)
+        .foregroundColor(dummy ? .primary : .primary)
     }
 }
 

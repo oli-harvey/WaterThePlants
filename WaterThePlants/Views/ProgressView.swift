@@ -4,6 +4,7 @@ struct ProgressView: View {
     var task: Task
     @State var taskViewStatus: TaskViewStatus = .normal
     @Binding var dummy: Bool
+    @State var showTaskStatusAlert = false
         
     var body: some View {
         HStack {
@@ -16,9 +17,22 @@ struct ProgressView: View {
             }
             VStack {
                 ProgressText(task: task, status: $taskViewStatus, dummy: $dummy)
-                TaskControls(task: task, status: $taskViewStatus)
+                    .padding(.trailing)
+              //  TaskControls(task: task, status: $taskViewStatus)
+            }
+            .alert(isPresented: $showTaskStatusAlert) {
+                Alert(title: Text("Confirm Done"),
+                     primaryButton: .destructive(Text("Cancel")),
+                     secondaryButton: .default(Text("Done")) {
+                        task.taskDone()
+                     })
             }
         }
+
+        .onTapGesture {
+            showTaskStatusAlert = true
+        }
+        
     }
 }
 
