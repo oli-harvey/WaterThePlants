@@ -13,12 +13,18 @@ struct CompletionsView: View {
     
     var body: some View {
         HStack {
-            ForEach(0..<5) { comp in
+            ForEach(0..<maxTimes()) { comp in
                 Image(systemName: imageNameFor(comp))
             }
+            Text("\(task.timesCompleted)")
         }
 
     }
+    
+    func maxTimes() -> Int {
+        return min(5,Int(task.repetitions))
+    }
+    
     func imageNameFor(_ comp: Int) -> String {
         if comp + 1 > task.lastCompletions.count {
             return "circle"

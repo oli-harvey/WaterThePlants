@@ -8,7 +8,7 @@ struct TaskDetailView: View {
     @State private var name: String = ""
 
     @State private var dueType: DueType = .after
-    @State private var repetitions: Int64 = 0
+    @State private var repetitions = 0
     @State private var dueDate = Date()
     
     @State private var dueTimePart: TimePart = .day
@@ -18,7 +18,7 @@ struct TaskDetailView: View {
     @State private var repeatsForever: Bool = false
     @State private var repetitionStatus: RepetitionStatus = .none
     @State private var dueEvery: TimePart = .day
-    @State private var dueEveryAmount: Int64 = 1
+    @State private var dueEveryAmount = 1
 
     
     @State private var customCompletionDate = false
@@ -148,10 +148,10 @@ struct TaskDetailView: View {
             newTask.name = self.name
             newTask.due = self.dueDate
             newTask.lastComplete = self.completetionDate
-            newTask.repetitions = self.repetitions
+            newTask.repetitions = Int64(self.repetitions)
             newTask.repetitionStatus = self.repetitionStatus
             newTask.dueEvery = self.dueEvery
-            newTask.dueEveryAmount = self.dueEveryAmount
+            newTask.dueEveryAmount = Int64(self.dueEveryAmount)
 
             do {
                 try viewContext.save()

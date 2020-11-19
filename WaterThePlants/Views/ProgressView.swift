@@ -18,9 +18,9 @@ struct ProgressView: View {
             VStack {
                 ProgressText(task: task, status: $taskViewStatus, dummy: $dummy)
                     .padding(.trailing)
+                Text("\(task.repetitionStatus.rawValue)")
+                Text("Repetitions left: \(task.repetitions - task.timesCompleted - task.timesSkipped)")
                 if task.repetitionStatus != .none {
-                    Text("Completed: \(task.timesCompleted) times")
-                    Text("Skipped: \(task.timesSkipped) times")
                     CompletionsView(task: task, dummy: $dummy)
                 }
               //  TaskControls(task: task, status: $taskViewStatus)
