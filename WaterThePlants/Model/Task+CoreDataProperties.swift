@@ -26,6 +26,8 @@ extension Task {
     @NSManaged public var repetitionStatusValue: Int32
     @NSManaged public var taskStatusValue: String?
     @NSManaged public var timesCompleted: Int64
+    @NSManaged public var timesSkipped: Int64
+    @NSManaged public var lastCompletionsValue: String
 }
 
 extension Task : Identifiable {
@@ -58,6 +60,22 @@ extension Task {
             self.taskStatusValue = newValue.rawValue
         }
     }
+    var lastCompletions: [Bool] {
+        get {
+            var lastCompletions = [Bool]()
+            for char in lastCompletionsValue {
+                char == "1" ? lastCompletions.append(true) : lastCompletions.append(false)
+            }
+            return lastCompletions
+        }
+        set {
+            var lastCompletionsString = ""
+            for val in newValue {
+                val ? lastCompletionsString.append("1") : lastCompletionsString.append("0")
+            }
+            self.lastCompletionsValue = lastCompletionsString
+        }
+    }
 }
 
 extension Task {
@@ -78,10 +96,6 @@ extension Task {
     }
     var completionDescTime: String {
         switch taskStatus {
-//        case .due:
-//            return "Due"
-//        case .cancelled:
-//            return "Cancelled"
         case .done:
             return "Done"
         default:
@@ -98,15 +112,27 @@ extension Task {
     func taskDone() {
         timesCompleted += 1
         lastComplete = Date()
-        if timesCompleted >= repetitions {
+        if timesCompleted + timesSkipped >= repetitions {
             taskStatus = .done
         } else {
             taskStatus = .running
         }
     }
-//    func setToCancelled() {
-//        taskStatus = .cancelled
-//    }
+    func skipDone() {
+        timesSkipped += 1
+        lastComplete = Date()
+        if timesCompleted + timesSkipped >= repetitions {
+            taskStatus = .done
+        } else {
+            taskStatus = .running
+        }
+    }
+    func addCompletion(completed: Bool) {
+        lastCompletions.append(completed)
+        if lastCompletions.count > 5 {
+            lastCompletions.removeFirst()
+        }
+    }
 }
 
 extension Task {
@@ -142,3 +168,4 @@ extension Task {
 
     }
 }
+

@@ -18,14 +18,23 @@ struct ProgressView: View {
             VStack {
                 ProgressText(task: task, status: $taskViewStatus, dummy: $dummy)
                     .padding(.trailing)
+                if task.repetitionStatus != .none {
+                    Text("Completed: \(task.timesCompleted) times")
+                    Text("Skipped: \(task.timesSkipped) times")
+                    CompletionsView(task: task, dummy: $dummy)
+                }
               //  TaskControls(task: task, status: $taskViewStatus)
             }
-            .alert(isPresented: $showTaskStatusAlert) {
-                Alert(title: Text("Confirm Done"),
-                     primaryButton: .destructive(Text("Cancel")),
-                     secondaryButton: .default(Text("Done")) {
-                        task.taskDone()
-                     })
+            .actionSheet(isPresented: $showTaskStatusAlert) {
+                ActionSheet(title: Text("Confirm Done"),
+                            buttons: [.destructive(Text("Cancel")),
+                                      .default(Text("Done")) {
+                                        task.taskDone()
+                                      },
+                                      .default(Text("Skip")) {
+                                        task.skipDone()
+                                      }]
+                            )
             }
         }
 
@@ -36,9 +45,4 @@ struct ProgressView: View {
     }
 }
 
-struct PrgoressView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProgressView(task: Task(), dummy: .constant(true))
-    }
-}
 

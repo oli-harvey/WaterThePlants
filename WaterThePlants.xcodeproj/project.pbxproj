@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9394E4102563056F00CB8328 /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394E40F2563056F00CB8328 /* FilteredList.swift */; };
+		9394E4152566F70700CB8328 /* CompletionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394E4142566F70700CB8328 /* CompletionsView.swift */; };
 		9397DF90255718A50051BE06 /* WaterThePlantsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397DF8F255718A50051BE06 /* WaterThePlantsApp.swift */; };
 		9397DF92255718A50051BE06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397DF91255718A50051BE06 /* ContentView.swift */; };
 		9397DF94255718A80051BE06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9397DF93255718A80051BE06 /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		9394E40F2563056F00CB8328 /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
+		9394E4142566F70700CB8328 /* CompletionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionsView.swift; sourceTree = "<group>"; };
 		9397DF8C255718A50051BE06 /* WaterThePlants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterThePlants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9397DF8F255718A50051BE06 /* WaterThePlantsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterThePlantsApp.swift; sourceTree = "<group>"; };
 		9397DF91255718A50051BE06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				9397E023255861E80051BE06 /* ProgressView.swift */,
 				9397E030255869E20051BE06 /* ProgressText.swift */,
 				9397E02B255862500051BE06 /* TaskControls.swift */,
+				9394E4142566F70700CB8328 /* CompletionsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				9397E01F255861720051BE06 /* ProgressBar.swift in Sources */,
 				9397DFED25571FE40051BE06 /* Date.swift in Sources */,
 				9397E00A2557FFC30051BE06 /* TaskError.swift in Sources */,
+				9394E4152566F70700CB8328 /* CompletionsView.swift in Sources */,
 				9397DFE825571FC60051BE06 /* TimeInterval.swift in Sources */,
 				9397DFF7255728770051BE06 /* TimePart.swift in Sources */,
 				9397DF99255718A80051BE06 /* Persistence.swift in Sources */,
