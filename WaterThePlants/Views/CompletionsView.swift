@@ -16,8 +16,8 @@ struct CompletionsView: View {
             ForEach(0..<maxTimes()) { comp in
                 Image(systemName: imageNameFor(comp))
             }
-            Text("\(task.timesCompleted)")
         }
+        .foregroundColor(dummy ? .primary : .primary)
 
     }
     
@@ -31,7 +31,7 @@ struct CompletionsView: View {
         } else if task.lastCompletions[comp] {
             return "checkmark.circle"
         } else {
-            return "x.circle"
+            return "multiply.circle"
         }
     }
 }

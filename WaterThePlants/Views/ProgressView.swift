@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ProgressView: View {
     var task: Task
+    @Environment(\.managedObjectContext) private var viewContext
     @State var taskViewStatus: TaskViewStatus = .normal
     @Binding var dummy: Bool
     @State var showTaskStatusAlert = false
@@ -18,9 +19,10 @@ struct ProgressView: View {
             VStack {
                 ProgressText(task: task, status: $taskViewStatus, dummy: $dummy)
                     .padding(.trailing)
-                Text("\(task.repetitionStatus.rawValue)")
-                Text("Repetitions left: \(task.repetitions - task.timesCompleted - task.timesSkipped)")
+       //         Text("\(task.repetitionStatus.rawValue)")
                 if task.repetitionStatus != .none {
+                    Text("Completed: \(task.timesCompleted)")
+                    Text("Reps: \(task.repsLeft)")
                     CompletionsView(task: task, dummy: $dummy)
                 }
               //  TaskControls(task: task, status: $taskViewStatus)
@@ -30,9 +32,14 @@ struct ProgressView: View {
                             buttons: [.destructive(Text("Cancel")),
                                       .default(Text("Done")) {
                                         task.taskDone()
+                                        dummy.toggle()
+                                        save()
+                                        
                                       },
                                       .default(Text("Skip")) {
                                         task.skipDone()
+                                        dummy.toggle()
+                                        save()
                                       }]
                             )
             }
@@ -41,7 +48,15 @@ struct ProgressView: View {
         .onTapGesture {
             showTaskStatusAlert = true
         }
-        
+    }
+    func save() {
+        do {
+            try viewContext.save()
+        } catch let error as TaskError {
+            print(error.localizedDescription)
+        } catch {
+            print("made up error")
+        }
     }
 }
 

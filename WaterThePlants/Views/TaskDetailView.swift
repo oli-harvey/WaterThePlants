@@ -135,6 +135,7 @@ struct TaskDetailView: View {
             }
             if self.repeatsForever {
                 repetitionStatus = .forever
+                repetitions = 1000
             } else if self.repetitions > 0 {
                 repetitionStatus = .times
             } else {

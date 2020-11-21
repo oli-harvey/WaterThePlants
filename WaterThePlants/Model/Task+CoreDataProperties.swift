@@ -76,6 +76,14 @@ extension Task {
             self.lastCompletionsValue = lastCompletionsString
         }
     }
+    
+    var repsLeft: String {
+        if repetitionStatus == .forever {
+           return "inf"
+        } else {
+            return String(repetitions - timesCompleted - timesSkipped)
+        }
+    }
 }
 
 extension Task {
@@ -112,7 +120,8 @@ extension Task {
     func taskDone() {
         timesCompleted += 1
         lastComplete = Date()
-        if timesCompleted + timesSkipped >= repetitions {
+        addCompletion(completed: true)
+        if timesCompleted + timesSkipped >= repetitions && repetitionStatus != .forever {
             taskStatus = .done
         } else {
             taskStatus = .running
@@ -121,7 +130,8 @@ extension Task {
     func skipDone() {
         timesSkipped += 1
         lastComplete = Date()
-        if timesCompleted + timesSkipped >= repetitions {
+        addCompletion(completed: false)
+        if timesCompleted + timesSkipped >= repetitions && repetitionStatus != .forever  {
             taskStatus = .done
         } else {
             taskStatus = .running

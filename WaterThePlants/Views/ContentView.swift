@@ -29,14 +29,40 @@ struct ContentView: View {
                 FilteredList(filter: showingTaskStatus.rawValue, dummy: $dummy)
 
             }
-            .toolbar {
-                Button(action: {showTaskDetail = true}) {
-                    Label("Add Task", systemImage: "plus")
-                        .font(.largeTitle)
-                }
+            .padding(.vertical)
+//            .toolbar {
+//                Button(action: {showTaskDetail = true}) {
+//                    Label("Add Task", systemImage: "plus")
+//                        .font(.largeTitle)
+//                }
                 
-        }
-            .navigationTitle("Water the Plants")
+//        }
+        //    .navigationTitle("Water the Plants")
+            .navigationBarTitle("", displayMode: .inline)
+           // .navigationBarHidden(true)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    HStack {
+                        Image("Logo")
+                            .resizable()
+                            .frame(width: 40, height:40, alignment: .leading)
+                        Text("Water the Plants")
+                            .font(.largeTitle)
+                    }
+                    .padding()
+                    
+                }
+                ToolbarItemGroup(placement: .bottomBar) {
+                    Spacer()
+                    Button(action: {showTaskDetail = true}) {
+                        Label("Add Task", systemImage: "plus.circle")
+                            .font(.largeTitle)
+                    }
+                    .padding()
+                    
+                }
+            }
+            
         } // NavigationView
         .sheet(isPresented: $showTaskDetail) {
             TaskDetailView()
