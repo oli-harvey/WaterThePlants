@@ -27,6 +27,10 @@ struct ProgressText: View {
                     Text(task.lastCompleteTimeSince.format())
                 }
             }
+            if task.repetitionStatus != .none {
+                Text("Completed: \(task.timesCompleted)")
+                Text("Reps: \(task.repsLeft)")
+            }
         }
         .font(.subheadline)
         .foregroundColor(dummy ? .primary : .primary)

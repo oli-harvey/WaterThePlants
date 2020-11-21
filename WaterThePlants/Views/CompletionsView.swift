@@ -15,9 +15,11 @@ struct CompletionsView: View {
         HStack {
             ForEach(0..<maxTimes()) { comp in
                 Image(systemName: imageNameFor(comp))
+                    .foregroundColor(dummy ? colorFor(comp) : colorFor(comp))
             }
         }
-        .foregroundColor(dummy ? .primary : .primary)
+        .padding()
+       
 
     }
     
@@ -32,6 +34,16 @@ struct CompletionsView: View {
             return "checkmark.circle"
         } else {
             return "multiply.circle"
+        }
+    }
+    
+    func colorFor(_ comp: Int) -> Color {
+        if comp + 1 > task.lastCompletions.count {
+            return .gray
+        } else if task.lastCompletions[comp] {
+            return .green
+        } else {
+            return .red
         }
     }
 }

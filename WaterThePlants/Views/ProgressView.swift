@@ -18,14 +18,10 @@ struct ProgressView: View {
             }
             VStack {
                 ProgressText(task: task, status: $taskViewStatus, dummy: $dummy)
-                    .padding(.trailing)
-       //         Text("\(task.repetitionStatus.rawValue)")
                 if task.repetitionStatus != .none {
-                    Text("Completed: \(task.timesCompleted)")
-                    Text("Reps: \(task.repsLeft)")
                     CompletionsView(task: task, dummy: $dummy)
                 }
-              //  TaskControls(task: task, status: $taskViewStatus)
+                
             }
             .actionSheet(isPresented: $showTaskStatusAlert) {
                 ActionSheet(title: Text("Confirm Done"),
@@ -34,7 +30,6 @@ struct ProgressView: View {
                                         task.taskDone()
                                         dummy.toggle()
                                         save()
-                                        
                                       },
                                       .default(Text("Skip")) {
                                         task.skipDone()
