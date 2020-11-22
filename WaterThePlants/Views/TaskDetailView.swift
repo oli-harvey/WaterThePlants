@@ -143,7 +143,7 @@ struct TaskDetailView: View {
             }
             
             if self.dueType == .after {
-                self.dueDate = self.completetionDate.addingTimeInterval(self.dueTimein(dueTimePart))
+                self.dueDate = self.completetionDate.addingTimeInterval(self.dueTimein(dueTimePart, amount: dueTimePartAmount))
             }
             
             newTask.name = self.name
@@ -166,9 +166,9 @@ struct TaskDetailView: View {
         }
     }
 
-    func dueTimein(_ timePart: TimePart) -> TimeInterval {
+    func dueTimein(_ timePart: TimePart, amount: Int) -> TimeInterval {
         var time = TimeInterval()
-        time += timePart.seconds()
+        time += timePart.seconds() * Double(amount)
         return time
     }
     
