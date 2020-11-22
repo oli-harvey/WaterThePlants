@@ -2,7 +2,6 @@ import SwiftUI
 
 struct ProgressBar: View {
     var task: Task
-    @State private var status: TaskViewStatus = .normal
     @Binding var dummy: Bool
 
     var body: some View {

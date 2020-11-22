@@ -5,6 +5,9 @@ struct TaskDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
     
+    var editMode: Bool
+    var task: Task?
+    
     @State private var name: String = ""
 
     @State private var dueType: DueType = .after
@@ -27,6 +30,34 @@ struct TaskDetailView: View {
     @State private var showingError = false
     @State private var error: TaskError? = nil
     @State private var startingFrom = Date()
+    
+    init() {
+        if editMode {
+            // load from task
+        } else {
+            // load defaults
+            name = ""
+            dueType = .after
+            repetitions = 0
+            dueDate = Date()
+            dueTimePart = .day
+            dueTimePartAmount = 1
+            
+            repeats = false
+            repeatsForever = false
+            repetitionStatus = .none
+            dueEvery = .day
+            dueEveryAmount = 1
+
+            
+            customCompletionDate = false
+            completetionDate = Date()
+
+            showingError = false
+            error = nil
+            startingFrom = Date()
+        }
+    }
    
     var body: some View {
         NavigationView {
@@ -109,7 +140,7 @@ struct TaskDetailView: View {
                 }
                 
             } // Form
-            .navigationBarTitle(Text("New Task"), displayMode: .inline)
+            .navigationBarTitle(Text(editMode ? "Edit Task" : "New Task"), displayMode: .inline)
             .navigationBarItems(
                 leading:
                     Button("Cancel") {
@@ -121,6 +152,11 @@ struct TaskDetailView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }
             )
+            .onAppear {
+                if editMode {
+                    print("loading stuff for task: \(task?.name ?? "no task")")
+                }
+            }
         } // NavigationView
 
         
@@ -176,6 +212,6 @@ struct TaskDetailView: View {
 
 struct TaskDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskDetailView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        TaskDetailView(editMode: false).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

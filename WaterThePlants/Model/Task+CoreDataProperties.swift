@@ -80,8 +80,10 @@ extension Task {
     var repsLeft: String {
         if repetitionStatus == .forever {
            return "inf"
-        } else {
+        } else if repetitionStatus == .times {
             return String(repetitions - timesCompleted - timesSkipped)
+        } else {
+            return "one off"
         }
     }
 }

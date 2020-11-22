@@ -11,7 +11,7 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var showingTaskStatus: TaskStatus = .running
-    @State var showTaskDetail = false
+    @State var showingTaskDetail = false
     @State var dummy = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -26,20 +26,11 @@ struct ContentView: View {
                     .padding()
                 }
                     .pickerStyle(SegmentedPickerStyle())
-                FilteredList(filter: showingTaskStatus.rawValue, dummy: $dummy)
+                FilteredList(filter: showingTaskStatus.rawValue, showingTaskDetail: $showingTaskDetail, dummy: $dummy)
 
             }
             .padding(.vertical)
-//            .toolbar {
-//                Button(action: {showTaskDetail = true}) {
-//                    Label("Add Task", systemImage: "plus")
-//                        .font(.largeTitle)
-//                }
-                
-//        }
-        //    .navigationTitle("Water the Plants")
             .navigationBarTitle("", displayMode: .inline)
-           // .navigationBarHidden(true)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     HStack {
@@ -54,7 +45,7 @@ struct ContentView: View {
                 }
                 ToolbarItemGroup(placement: .bottomBar) {
                     Spacer()
-                    Button(action: {showTaskDetail = true}) {
+                    Button(action: {showingTaskDetail = true}) {
                         Label("Add Task", systemImage: "plus.circle")
                             .font(.largeTitle)
                     }
@@ -64,8 +55,8 @@ struct ContentView: View {
             }
             
         } // NavigationView
-        .sheet(isPresented: $showTaskDetail) {
-            TaskDetailView()
+        .sheet(isPresented: $showingTaskDetail) {
+            TaskDetailView(editMode: false, task: nil)
         }
 
         .onReceive(timer) { input in

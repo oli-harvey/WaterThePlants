@@ -32,7 +32,6 @@
 		9397E024255861E80051BE06 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E023255861E80051BE06 /* ProgressView.swift */; };
 		9397E02C255862500051BE06 /* TaskControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E02B255862500051BE06 /* TaskControls.swift */; };
 		9397E031255869E20051BE06 /* ProgressText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E030255869E20051BE06 /* ProgressText.swift */; };
-		9397E03625586D210051BE06 /* TaskViewStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E03525586D210051BE06 /* TaskViewStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +84,6 @@
 		9397E023255861E80051BE06 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		9397E02B255862500051BE06 /* TaskControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskControls.swift; sourceTree = "<group>"; };
 		9397E030255869E20051BE06 /* ProgressText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressText.swift; sourceTree = "<group>"; };
-		9397E03525586D210051BE06 /* TaskViewStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +218,6 @@
 				9397DFF12557285D0051BE06 /* DueType.swift */,
 				9397DFF6255728770051BE06 /* TimePart.swift */,
 				9397E0092557FFC30051BE06 /* TaskError.swift */,
-				9397E03525586D210051BE06 /* TaskViewStatus.swift */,
 			);
 			path = enums;
 			sourceTree = "<group>";
@@ -374,7 +371,6 @@
 				9397DFCA25571E170051BE06 /* Task+CoreDataClass.swift in Sources */,
 				9397DF9C255718A80051BE06 /* WaterThePlants.xcdatamodeld in Sources */,
 				9397DFDB25571EF90051BE06 /* TaskStatus.swift in Sources */,
-				9397E03625586D210051BE06 /* TaskViewStatus.swift in Sources */,
 				9394E4102563056F00CB8328 /* FilteredList.swift in Sources */,
 				9397DFF22557285D0051BE06 /* DueType.swift in Sources */,
 				9397DF92255718A50051BE06 /* ContentView.swift in Sources */,

@@ -15,7 +15,7 @@ enum TimePart: String, CaseIterable, Equatable {
         case .day:
             return 60 * 60 * 24
         case .week:
-            return 0 * 60 * 24 * 7
+            return 60 * 60 * 24 * 7
         case .month:
             return 60 * 60 * 24 * 365 / 12
         case .year:

@@ -3,7 +3,8 @@ import SwiftUI
 struct ProgressView: View {
     var task: Task
     @Environment(\.managedObjectContext) private var viewContext
-    @State var taskViewStatus: TaskViewStatus = .normal
+    @State var showingText = false
+    @Binding var showingTaskDetail: Bool
     @Binding var dummy: Bool
     @State var showTaskStatusAlert = false
         
@@ -17,10 +18,13 @@ struct ProgressView: View {
                     .font(.title)
             }
             VStack {
-                ProgressText(task: task, status: $taskViewStatus, dummy: $dummy)
-                if task.repetitionStatus != .none {
-                    CompletionsView(task: task, dummy: $dummy)
+                if showingText  {
+                    ProgressText(task: task, dummy: $dummy)
+                    if task.repetitionStatus != .none {
+                        CompletionsView(task: task, dummy: $dummy)
+                    }
                 }
+               
                 
             }
             .actionSheet(isPresented: $showTaskStatusAlert) {
@@ -35,12 +39,24 @@ struct ProgressView: View {
                                         task.skipDone()
                                         dummy.toggle()
                                         save()
-                                      }]
+                                      },
+                                      .default(Text("Edit")) {
+                                        showingTaskDetail = true
+                                      }
+                            ]
                             )
+            }
+            .sheet(isPresented: $showingTaskDetail) {
+                TaskDetailView(editMode: true, task: task)
             }
         }
 
         .onTapGesture {
+            withAnimation {
+                showingText.toggle()
+            }
+        }
+        .onLongPressGesture {
             showTaskStatusAlert = true
         }
     }
