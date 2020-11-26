@@ -4,7 +4,8 @@ struct ProgressView: View {
     var task: Task
     @Environment(\.managedObjectContext) private var viewContext
     @State var showingText = false
-    @Binding var showingTaskDetail: Bool
+    @State var showingTaskEdit: Bool = false
+    
     @Binding var dummy: Bool
     @State var showTaskStatusAlert = false
         
@@ -24,7 +25,6 @@ struct ProgressView: View {
                         CompletionsView(task: task, dummy: $dummy)
                     }
                 }
-               
                 
             }
             .actionSheet(isPresented: $showTaskStatusAlert) {
@@ -41,13 +41,13 @@ struct ProgressView: View {
                                         save()
                                       },
                                       .default(Text("Edit")) {
-                                        showingTaskDetail = true
+                                        showingTaskEdit = true
                                       }
                             ]
                             )
             }
-            .sheet(isPresented: $showingTaskDetail) {
-                TaskDetailView(editMode: true, task: task)
+            .sheet(isPresented: $showingTaskEdit) {
+                EditView(taskViewData: TaskViewData(task: task))
             }
         }
 

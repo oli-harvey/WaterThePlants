@@ -16,11 +16,12 @@ extension Task {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Task> {
         return NSFetchRequest<Task>(entityName: "Task")
     }
-
-    @NSManaged public var due: Date?
+    @NSManaged public var taskID: UUID
+    @NSManaged public var dueDate: Date?
+    @NSManaged public var dueTypeValue: String?
     @NSManaged public var dueEveryAmount: Int64
     @NSManaged public var dueEveryValue: String?
-    @NSManaged public var lastComplete: Date?
+    @NSManaged public var completionDate: Date?
     @NSManaged public var name: String?
     @NSManaged public var repetitions: Int64
     @NSManaged public var repetitionStatusValue: Int32
@@ -31,7 +32,6 @@ extension Task {
 }
 
 extension Task : Identifiable {
-
 }
 
 extension Task {
@@ -60,6 +60,16 @@ extension Task {
             self.taskStatusValue = newValue.rawValue
         }
     }
+    var dueType: DueType {
+        get {
+            return DueType(rawValue: self.dueTypeValue ?? "At") ?? DueType.at
+        }
+        set {
+            print("setting duetype to \(newValue.rawValue)")
+            self.dueTypeValue = newValue.rawValue
+        }
+    }
+    
     var lastCompletions: [Bool] {
         get {
             var lastCompletions = [Bool]()
@@ -90,13 +100,13 @@ extension Task {
 
 extension Task {
     var timeElapsed: TimeInterval {
-        Date().timeIntervalSince(lastComplete ?? Date())
+        Date().timeIntervalSince(completionDate ?? Date())
     }
     var timeRemaining: TimeInterval {
-        due?.timeIntervalSince(Date()) ?? TimeInterval(100)
+        dueDate?.timeIntervalSince(Date()) ?? TimeInterval(100)
     }
     var totalTime: TimeInterval {
-        due?.timeIntervalSince(lastComplete ?? Date()) ?? TimeInterval(100)
+        dueDate?.timeIntervalSince(completionDate ?? Date()) ?? TimeInterval(100)
     }
     var percentComplete: CGFloat {
         CGFloat(timeElapsed / totalTime)
@@ -113,7 +123,7 @@ extension Task {
         }
     }
     var lastCompleteTimeSince: TimeInterval {
-        Date().timeIntervalSince(lastComplete ?? Date())
+        Date().timeIntervalSince(completionDate ?? Date())
     }
 
 }
@@ -121,7 +131,7 @@ extension Task {
 extension Task {
     func taskDone() {
         timesCompleted += 1
-        lastComplete = Date()
+        completionDate = Date()
         addCompletion(completed: true)
         if timesCompleted + timesSkipped >= repetitions && repetitionStatus != .forever {
             taskStatus = .done
@@ -131,7 +141,7 @@ extension Task {
     }
     func skipDone() {
         timesSkipped += 1
-        lastComplete = Date()
+        completionDate = Date()
         addCompletion(completed: false)
         if timesCompleted + timesSkipped >= repetitions && repetitionStatus != .forever  {
             taskStatus = .done
@@ -154,7 +164,7 @@ extension Task {
             let addRequest = {
                 let content = UNMutableNotificationContent()
                 content.title = "Task due: \(self.name ?? "Unknown Task")"
-                content.subtitle = "at: \(self.due?.timeString() ?? "Unknown Time")"
+                content.subtitle = "at: \(self.dueDate?.timeString() ?? "Unknown Time")"
                 content.sound = UNNotificationSound.default
                 
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.timeRemaining, repeats: false)

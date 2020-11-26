@@ -18,9 +18,9 @@ struct ProgressText: View {
 
             }
             VStack(alignment: .leading) {
-                Text(task.due?.dateTimeString() ?? Date().dateTimeString())
+                Text(task.dueDate?.dateTimeString() ?? Date().dateTimeString())
                 Text(task.completionDescTime)
-                Text(task.lastComplete?.dateTimeString() ?? Date().dateTimeString())
+                Text(task.completionDate?.dateTimeString() ?? Date().dateTimeString())
                 Text(task.lastCompleteTimeSince.format())
                 if task.repetitionStatus != .none {
                     Text("\(task.timesCompleted)")

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9394E4102563056F00CB8328 /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394E40F2563056F00CB8328 /* FilteredList.swift */; };
 		9394E4152566F70700CB8328 /* CompletionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394E4142566F70700CB8328 /* CompletionsView.swift */; };
+		9394E43C256D91AE00CB8328 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394E43B256D91AE00CB8328 /* EditView.swift */; };
+		9394E441256ED26400CB8328 /* TaskViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394E440256ED26400CB8328 /* TaskViewData.swift */; };
 		9397DF90255718A50051BE06 /* WaterThePlantsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397DF8F255718A50051BE06 /* WaterThePlantsApp.swift */; };
 		9397DF92255718A50051BE06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397DF91255718A50051BE06 /* ContentView.swift */; };
 		9397DF94255718A80051BE06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9397DF93255718A80051BE06 /* Assets.xcassets */; };
@@ -54,6 +56,8 @@
 /* Begin PBXFileReference section */
 		9394E40F2563056F00CB8328 /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 		9394E4142566F70700CB8328 /* CompletionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionsView.swift; sourceTree = "<group>"; };
+		9394E43B256D91AE00CB8328 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		9394E440256ED26400CB8328 /* TaskViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewData.swift; sourceTree = "<group>"; };
 		9397DF8C255718A50051BE06 /* WaterThePlants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterThePlants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9397DF8F255718A50051BE06 /* WaterThePlantsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterThePlantsApp.swift; sourceTree = "<group>"; };
 		9397DF91255718A50051BE06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 				9397DFC925571E170051BE06 /* Task+CoreDataProperties.swift */,
 				9397DFE725571FC60051BE06 /* TimeInterval.swift */,
 				9397DFEC25571FE40051BE06 /* Date.swift */,
+				9394E440256ED26400CB8328 /* TaskViewData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				9397DF91255718A50051BE06 /* ContentView.swift */,
 				9394E40F2563056F00CB8328 /* FilteredList.swift */,
 				9397E0042557FF390051BE06 /* TaskDetailView.swift */,
+				9394E43B256D91AE00CB8328 /* EditView.swift */,
 				9397E01E255861720051BE06 /* ProgressBar.swift */,
 				9397E023255861E80051BE06 /* ProgressView.swift */,
 				9397E030255869E20051BE06 /* ProgressText.swift */,
@@ -370,9 +376,11 @@
 				9397DF99255718A80051BE06 /* Persistence.swift in Sources */,
 				9397DFCA25571E170051BE06 /* Task+CoreDataClass.swift in Sources */,
 				9397DF9C255718A80051BE06 /* WaterThePlants.xcdatamodeld in Sources */,
+				9394E43C256D91AE00CB8328 /* EditView.swift in Sources */,
 				9397DFDB25571EF90051BE06 /* TaskStatus.swift in Sources */,
 				9394E4102563056F00CB8328 /* FilteredList.swift in Sources */,
 				9397DFF22557285D0051BE06 /* DueType.swift in Sources */,
+				9394E441256ED26400CB8328 /* TaskViewData.swift in Sources */,
 				9397DF92255718A50051BE06 /* ContentView.swift in Sources */,
 				9397E024255861E80051BE06 /* ProgressView.swift in Sources */,
 				9397DFCB25571E170051BE06 /* Task+CoreDataProperties.swift in Sources */,

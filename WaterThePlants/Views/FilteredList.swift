@@ -15,7 +15,7 @@ struct FilteredList: View {
     init(filter: String, showingTaskDetail: Binding<Bool>, dummy: Binding<Bool>) {
         
         fetchRequest = FetchRequest<Task>(entity: Task.entity(),
-                                          sortDescriptors: [NSSortDescriptor(keyPath: \Task.due, ascending: true)],
+                                          sortDescriptors: [NSSortDescriptor(keyPath: \Task.dueDate, ascending: true)],
                                           predicate: NSPredicate(format: "taskStatusValue == %@", filter), animation: .default)
         self._dummy = dummy
         self._showingTaskDetail = showingTaskDetail
@@ -26,7 +26,7 @@ struct FilteredList: View {
     var body: some View {
         List {
             ForEach(tasks) { task in
-                ProgressView(task: task, showingTaskDetail: $showingTaskDetail, dummy: $dummy)
+                ProgressView(task: task, dummy: $dummy)
             }
             .onDelete(perform: deleteItems)
         }

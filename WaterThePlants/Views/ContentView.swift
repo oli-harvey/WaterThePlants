@@ -56,7 +56,7 @@ struct ContentView: View {
             
         } // NavigationView
         .sheet(isPresented: $showingTaskDetail) {
-            TaskDetailView(editMode: false, task: nil)
+            EditView(taskViewData: TaskViewData())
         }
 
         .onReceive(timer) { input in
