@@ -90,7 +90,7 @@ struct EditView: View {
                     }
                 }// end last completed
                 .alert(isPresented: $showingError) {
-                    Alert(title: Text("Important message"), message: Text(error?.localizedDescription ?? "Unknown Error"), dismissButton: .default(Text("Got it!")))
+                    Alert(title: Text(error?.errorTitle ?? "Dont know what you did!"), message: Text(error?.localizedDescription ?? "Unknown Error"), dismissButton: .default(Text("Got it!")))
                 }
                 .onAppear{
                     print("printing from editview")
@@ -109,9 +109,9 @@ struct EditView: View {
                         do {
                             try saveTask()
                             self.presentationMode.wrappedValue.dismiss()
-                        } catch let thiserror as TaskError {
+                        } catch let error as TaskError {
                             showingError = true
-                            self.error = thiserror
+                            self.error = error
                         } catch {
                             print(error.localizedDescription)
                         }
@@ -135,7 +135,9 @@ struct EditView: View {
     // func to save to coredata
     
     public func saveTask() throws {
-        let newTask = Task(context: viewContext)
+        // check if valid task or notify user
+        
+        
             
         if taskViewData.repeatsForever {
             taskViewData.repetitionStatus = .forever
@@ -149,7 +151,8 @@ struct EditView: View {
         if taskViewData.dueType == .after {
             taskViewData.dueDate = taskViewData.completionDate.addingTimeInterval(dueTimein(taskViewData.dueTimePart, amount: taskViewData.dueTimePartAmount))
             }
-//        newTask.taskID = taskViewData.taskID
+        // ok go ahead make the new task
+        let newTask = Task(context: viewContext)
         newTask.name = taskViewData.name
         newTask.dueDate = taskViewData.dueDate
         newTask.completionDate = taskViewData.completionDate
@@ -159,19 +162,18 @@ struct EditView: View {
         newTask.dueEveryAmount = Int64(taskViewData.dueEveryAmount)
         newTask.dueType = taskViewData.dueType
         newTask.lastCompletions = [Bool]()
-        print(newTask)
         
+        print(newTask)
+        // if editting we actually created a duplicate so delete the original
         if taskViewData.editting {
             if let task = taskViewData.task {
                 viewContext.delete(task)
             }
         }
-
+        // now try and save
         do {
             try viewContext.save()
             newTask.scheduleNotification()
-        } catch let error as TaskError {
-            throw error
         } catch {
             print(error.localizedDescription)
         }

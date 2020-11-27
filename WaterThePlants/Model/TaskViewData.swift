@@ -77,7 +77,7 @@ struct TaskViewData {
     
     // default task view data
     init() {
- //       self.taskID = UUID()
+        
         self.name = ""
         self.dueType = .at
         self.repetitions = 1

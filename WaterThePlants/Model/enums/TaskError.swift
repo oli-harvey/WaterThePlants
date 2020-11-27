@@ -15,4 +15,14 @@ extension TaskError: LocalizedError {
                 return NSLocalizedString("Give the task a name", comment: "")
         }
     }
+    public var errorTitle: String? {
+        switch self {
+        case .dueDateInPast:
+            return NSLocalizedString("Due When?", comment: "")
+        case .lastCompleteInFuture:
+                return NSLocalizedString("That hasnt happened yet", comment: "")
+        case .nameEmpty:
+                return NSLocalizedString("What do you want to call it?", comment: "")
+        }
+    }
 }
