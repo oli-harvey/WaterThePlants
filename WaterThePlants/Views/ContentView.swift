@@ -13,13 +13,16 @@ struct ContentView: View {
     @State var showingTaskStatus: TaskStatus = .running
     @State var showingTaskDetail = false
     @State var dummy = false
+    var moveIn: Edge {
+       showingTaskStatus == .running ? .trailing : .leading
+    }
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         NavigationView {
             VStack {
-                Picker("Task Status", selection: $showingTaskStatus) {
+                Picker("Task Status", selection: $showingTaskStatus.animation()) {
                     ForEach(TaskStatus.allCases, id: \.self) { status in
                         Text(status.rawValue)
                     }
@@ -27,6 +30,7 @@ struct ContentView: View {
                 }
                     .pickerStyle(SegmentedPickerStyle())
                 FilteredList(filter: showingTaskStatus.rawValue, showingTaskDetail: $showingTaskDetail, dummy: $dummy)
+                    .transition(.move(edge: moveIn))
 
             }
             .padding(.vertical)
@@ -37,8 +41,11 @@ struct ContentView: View {
                         Image("Logo")
                             .resizable()
                             .frame(width: 40, height:40, alignment: .leading)
+                            .cornerRadius(10)
+                            .padding(.vertical)
                         Text("Water the Plants")
                             .font(.largeTitle)
+                            .padding(.vertical)
                     }
                     .padding()
                     
@@ -49,8 +56,6 @@ struct ContentView: View {
                         Label("Add Task", systemImage: "plus.circle")
                             .font(.largeTitle)
                     }
-                    .padding()
-                    
                 }
             }
             
