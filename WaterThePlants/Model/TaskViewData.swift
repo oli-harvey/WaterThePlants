@@ -71,6 +71,7 @@ struct TaskViewData {
     var completionDate: Date
     var dueTimePart: TimePart
     var dueTimePartAmount: Int
+    var timesCompleted: Int
     
     var editting: Bool
     var task: Task?
@@ -79,8 +80,8 @@ struct TaskViewData {
     init() {
         
         self.name = ""
-        self.dueType = .at
-        self.repetitions = 1
+        self.dueType = .after
+        self.repetitions = 0
         self.dueDate = Date()
         self.repeats = false
         self.repeatsForever = false
@@ -91,7 +92,7 @@ struct TaskViewData {
         
         self.dueTimePart = .day
         self.dueTimePartAmount = 1
-        
+        self.timesCompleted = 0
         self.editting = false
         self.task = nil
     }
@@ -111,6 +112,7 @@ struct TaskViewData {
 
         self.dueTimePart = .day
         self.dueTimePartAmount = 1
+        self.timesCompleted = Int(task.timesCompleted)
         
         self.editting = true
         self.task = task

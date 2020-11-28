@@ -131,21 +131,27 @@ extension Task {
 extension Task {
     func taskDone() {
         timesCompleted += 1
+        addCompletion(completed: true)
         updateRepetitions()
     }
     func skipDone() {
         timesSkipped += 1
+        addCompletion(completed: false)
         updateRepetitions()
     }
     func updateRepetitions() {
         completionDate = Date()
-        addCompletion(completed: false)
+        
         if timesCompleted + timesSkipped >= repetitions && repetitionStatus != .forever  {
+            taskStatus = .done
+        } else if repetitionStatus == .none {
             taskStatus = .done
         } else {
             taskStatus = .running
-            let duration = dueDate! - completionDate!
-            dueDate = dueDate?.addingTimeInterval(duration)
+   //         let duration = dueDate! - completionDate!
+//            dueDate = dueDate?.addingTimeInterval(duration)
+            let newDue = dueEvery.seconds() * Double(dueEveryAmount)
+            dueDate = completionDate?.addingTimeInterval(newDue)
         }
     }
     func addCompletion(completed: Bool) {

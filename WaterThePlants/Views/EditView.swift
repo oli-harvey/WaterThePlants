@@ -158,6 +158,7 @@ struct EditView: View {
         newTask.dueEveryAmount = Int64(taskViewData.dueEveryAmount)
         newTask.dueType = taskViewData.dueType
         newTask.lastCompletions = [Bool]()
+        newTask.timesCompleted = Int64(taskViewData.timesCompleted)
         
         guard newTask.name != "" else { throw TaskError.nameEmpty }
         guard taskViewData.dueDate > Date() else { throw TaskError.dueDateInPast }
