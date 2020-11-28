@@ -27,7 +27,6 @@
 		9397DFED25571FE40051BE06 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397DFEC25571FE40051BE06 /* Date.swift */; };
 		9397DFF22557285D0051BE06 /* DueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397DFF12557285D0051BE06 /* DueType.swift */; };
 		9397DFF7255728770051BE06 /* TimePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397DFF6255728770051BE06 /* TimePart.swift */; };
-		9397E0052557FF390051BE06 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E0042557FF390051BE06 /* TaskDetailView.swift */; };
 		9397E00A2557FFC30051BE06 /* TaskError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E0092557FFC30051BE06 /* TaskError.swift */; };
 		9397E01425580E950051BE06 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9397E01325580E950051BE06 /* CloudKit.framework */; };
 		9397E01F255861720051BE06 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9397E01E255861720051BE06 /* ProgressBar.swift */; };
@@ -80,7 +79,6 @@
 		9397DFEC25571FE40051BE06 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		9397DFF12557285D0051BE06 /* DueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueType.swift; sourceTree = "<group>"; };
 		9397DFF6255728770051BE06 /* TimePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePart.swift; sourceTree = "<group>"; };
-		9397E0042557FF390051BE06 /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
 		9397E0092557FFC30051BE06 /* TaskError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskError.swift; sourceTree = "<group>"; };
 		9397E00E25580E8C0051BE06 /* WaterThePlants.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterThePlants.entitlements; sourceTree = "<group>"; };
 		9397E01325580E950051BE06 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -196,7 +194,6 @@
 			children = (
 				9397DF91255718A50051BE06 /* ContentView.swift */,
 				9394E40F2563056F00CB8328 /* FilteredList.swift */,
-				9397E0042557FF390051BE06 /* TaskDetailView.swift */,
 				9394E43B256D91AE00CB8328 /* EditView.swift */,
 				9397E01E255861720051BE06 /* ProgressBar.swift */,
 				9397E023255861E80051BE06 /* ProgressView.swift */,
@@ -365,7 +362,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9397E0052557FF390051BE06 /* TaskDetailView.swift in Sources */,
 				9397DFE325571F350051BE06 /* RepetitionStatus.swift in Sources */,
 				9397E01F255861720051BE06 /* ProgressBar.swift in Sources */,
 				9397DFED25571FE40051BE06 /* Date.swift in Sources */,

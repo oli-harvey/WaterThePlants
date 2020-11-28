@@ -98,7 +98,6 @@ struct TaskViewData {
     
     // init from task
     init(task: Task) {
-//        self.taskID = task.taskID
         self.name = task.name ?? ""
         self.dueType = task.dueType
         self.repetitions = Int(task.repetitions)

@@ -135,10 +135,7 @@ struct EditView: View {
     // func to save to coredata
     
     public func saveTask() throws {
-        // check if valid task or notify user
-        
-        
-            
+
         if taskViewData.repeatsForever {
             taskViewData.repetitionStatus = .forever
             taskViewData.repetitions = 1000
@@ -151,7 +148,6 @@ struct EditView: View {
         if taskViewData.dueType == .after {
             taskViewData.dueDate = taskViewData.completionDate.addingTimeInterval(dueTimein(taskViewData.dueTimePart, amount: taskViewData.dueTimePartAmount))
             }
-        // ok go ahead make the new task
         let newTask = Task(context: viewContext)
         newTask.name = taskViewData.name
         newTask.dueDate = taskViewData.dueDate
@@ -162,6 +158,10 @@ struct EditView: View {
         newTask.dueEveryAmount = Int64(taskViewData.dueEveryAmount)
         newTask.dueType = taskViewData.dueType
         newTask.lastCompletions = [Bool]()
+        
+        guard newTask.name != "" else { throw TaskError.nameEmpty }
+        guard taskViewData.dueDate > Date() else { throw TaskError.dueDateInPast }
+        guard taskViewData.completionDate < Date() else { throw TaskError.lastCompleteInFuture}
         
         print(newTask)
         // if editting we actually created a duplicate so delete the original
@@ -175,6 +175,7 @@ struct EditView: View {
             try viewContext.save()
             newTask.scheduleNotification()
         } catch {
+            print("error during save context")
             print(error.localizedDescription)
         }
     }
