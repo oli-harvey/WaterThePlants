@@ -16,7 +16,6 @@ extension Task {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Task> {
         return NSFetchRequest<Task>(entityName: "Task")
     }
-    @NSManaged public var taskID: UUID
     @NSManaged public var dueDate: Date?
     @NSManaged public var dueTypeValue: String?
     @NSManaged public var dueEveryAmount: Int64
@@ -29,6 +28,8 @@ extension Task {
     @NSManaged public var timesCompleted: Int64
     @NSManaged public var timesSkipped: Int64
     @NSManaged public var lastCompletionsValue: String
+    @NSManaged public var notificationID: String?
+    
 }
 
 extension Task : Identifiable {
@@ -152,6 +153,7 @@ extension Task {
 //            dueDate = dueDate?.addingTimeInterval(duration)
             let newDue = dueEvery.seconds() * Double(dueEveryAmount)
             dueDate = completionDate?.addingTimeInterval(newDue)
+            scheduleNotification()
         }
     }
     func addCompletion(completed: Bool) {
@@ -167,6 +169,7 @@ extension Task {
         let center = UNUserNotificationCenter.current()
 
             let addRequest = {
+                self.cancelNotification()
                 let content = UNMutableNotificationContent()
                 content.title = "Task due: \(self.name ?? "Unknown Task")"
                 content.subtitle = "at: \(self.dueDate?.timeString() ?? "Unknown Time")"
@@ -176,6 +179,7 @@ extension Task {
 
 
                 let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                self.notificationID = request.identifier
                 center.add(request)
             }
         
@@ -194,5 +198,11 @@ extension Task {
         }
 
     }
+    
+    func cancelNotification() {
+        let center = UNUserNotificationCenter.current()
+        guard let id = self.notificationID else { return }
+        center.removeDeliveredNotifications(withIdentifiers: [id])
+        center.removePendingNotificationRequests(withIdentifiers: [id])
+    }
 }
-
