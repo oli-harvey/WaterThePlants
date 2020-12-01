@@ -72,3 +72,8 @@ struct ProgressView: View {
 }
 
 
+struct ProgressView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProgressView(task: Task(), showingText: true, showingTaskEdit: true, dummy: .constant(true), showTaskStatusAlert: true)
+    }
+}

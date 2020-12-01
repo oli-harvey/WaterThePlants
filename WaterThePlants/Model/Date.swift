@@ -16,7 +16,7 @@ extension Date {
     }
     
     func dateTimeString() -> String {
-        if Date().dateString() == self.dateString() {
+        if Date().dateString() != self.dateString() {
             return self.dateString()
         } else {
             return self.timeString()
