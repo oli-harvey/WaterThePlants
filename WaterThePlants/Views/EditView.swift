@@ -157,12 +157,14 @@ struct EditView: View {
             
         if taskViewData.dueType == .after {
             taskViewData.dueDate = Date().addingTimeInterval(dueTimein(taskViewData.dueTimePart, amount: taskViewData.dueTimePartAmount))
-        } else if taskViewData.dueType == .on {
-            // set to end of day so you have all day to do the task if needed and avoids due date in past error
-            let cal = Calendar(identifier: .gregorian)
-            let endOfDueDate = cal.date(bySettingHour: 23, minute: 59, second: 59, of: taskViewData.dueDate) ?? Date()
-            taskViewData.dueDate = endOfDueDate
         }
+//
+//        else if taskViewData.dueType == .on {
+//            // set to end of day so you have all day to do the task if needed and avoids due date in past error
+//            let cal = Calendar(identifier: .gregorian)
+//            let endOfDueDate = cal.date(bySettingHour: 23, minute: 59, second: 59, of: taskViewData.dueDate) ?? Date()
+//            taskViewData.dueDate = endOfDueDate
+//        }
         guard taskViewData.name != "" else { throw TaskError.nameEmpty }
         guard taskViewData.dueDate > Date() else { throw TaskError.dueDateInPast }
         guard taskViewData.completionDate < Date() else { throw TaskError.lastCompleteInFuture}
