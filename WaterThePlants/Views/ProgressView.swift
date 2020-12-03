@@ -8,6 +8,10 @@ struct ProgressView: View {
     
     @Binding var dummy: Bool
     @State var showTaskStatusAlert = false
+    var moveIn: Edge {
+      // showingTaskStatus == .running ? .trailing : .leading
+        .leading
+    }
         
     var body: some View {
         HStack {
@@ -27,6 +31,7 @@ struct ProgressView: View {
                 }
                 
             }
+            .transition(.move(edge: .trailing))
             .actionSheet(isPresented: $showTaskStatusAlert) {
                 ActionSheet(title: Text("Confirm Done"),
                             buttons: [.destructive(Text("Cancel")),
@@ -50,6 +55,7 @@ struct ProgressView: View {
                 EditView(taskViewData: TaskViewData(task: task))
             }
         }
+       
 
         .onTapGesture {
             withAnimation {

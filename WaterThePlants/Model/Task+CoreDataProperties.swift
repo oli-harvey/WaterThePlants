@@ -126,37 +126,6 @@ extension Task {
     var lastCompleteTimeSince: TimeInterval {
         Date().timeIntervalSince(completionDate ?? Date())
     }
-    var tickUnit: TimePart {
-        let min = 6.0
-        switch totalTime {
-        case ..<0:
-            return .min
-        case 0..<TimePart.hour.seconds() * min:
-            return .min
-        case 0..<TimePart.day.seconds() * min:
-            return .hour
-        case 0..<TimePart.week.seconds() * min:
-            return .day
-        case 0..<TimePart.month.seconds() * min:
-            return .week
-        case 0..<TimePart.year.seconds() * min:
-            return .month
-        default:
-            return .year
-        }
-    }
-    
-    var tickNumber: Int {
-        print(name)
-        print("elapsed: \(timeElapsed)")
-        print("pct complete: \(percentComplete)")
-        print("totalTime: \(totalTime)")
-        print("tickunit secs: \(tickUnit.seconds())")
-        print(Int(totalTime / tickUnit.seconds()))
-        print(tickUnit)
-        return Int(totalTime / tickUnit.seconds())
-    }
-
 }
 
 extension Task {

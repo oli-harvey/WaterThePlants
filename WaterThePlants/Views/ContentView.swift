@@ -14,7 +14,8 @@ struct ContentView: View {
     @State var showingTaskDetail = false
     @State var dummy = false
     var moveIn: Edge {
-       showingTaskStatus == .running ? .trailing : .leading
+      // showingTaskStatus == .running ? .trailing : .leading
+        .leading
     }
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -22,7 +23,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Picker("Task Status", selection: $showingTaskStatus.animation()) {
+                Picker("Task Status", selection: $showingTaskStatus.animation(.default)) {
                     ForEach(TaskStatus.allCases, id: \.self) { status in
                         Text(status.rawValue)
                     }
@@ -30,7 +31,7 @@ struct ContentView: View {
                 }
                     .pickerStyle(SegmentedPickerStyle())
                 FilteredList(filter: showingTaskStatus.rawValue, showingTaskDetail: $showingTaskDetail, dummy: $dummy)
-                    .transition(.move(edge: moveIn))
+            //        .transition(.move(edge: moveIn))
 
             }
             .padding(.vertical)

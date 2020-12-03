@@ -30,7 +30,6 @@ struct FilteredList: View {
         List {
             ForEach(tasks) { task in
                 ProgressView(task: task, dummy: $dummy)
-                    .transition(.move(edge: moveIn))
             }
             .onDelete(perform: deleteItems)
         }
