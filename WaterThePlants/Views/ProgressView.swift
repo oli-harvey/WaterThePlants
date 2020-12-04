@@ -14,7 +14,7 @@ struct ProgressView: View {
     }
         
     var body: some View {
-        HStack {
+        HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
             ZStack {
                 ProgressBar(task: task, dummy: $dummy)
                     .padding()
@@ -22,18 +22,19 @@ struct ProgressView: View {
                 Text(task.name ?? "No Task")
                     .font(.title)
             }
-            VStack {
+            VStack(alignment: .leading) {
                 if showingText  {
                     ProgressText(task: task, dummy: $dummy)
                     if task.repetitionStatus != .none {
                         CompletionsView(task: task, dummy: $dummy)
                     }
                 }
-                
             }
-            .transition(.move(edge: .trailing))
+            Spacer()
+        }
+            .transition(.move(edge: .bottom))
             .actionSheet(isPresented: $showTaskStatusAlert) {
-                ActionSheet(title: Text("Confirm Done"),
+                ActionSheet(title: Text("Task Action"),
                             buttons: [.destructive(Text("Cancel")),
                                       .default(Text("Done")) {
                                         task.taskDone()
@@ -54,7 +55,6 @@ struct ProgressView: View {
             .sheet(isPresented: $showingTaskEdit) {
                 EditView(taskViewData: TaskViewData(task: task))
             }
-        }
        
 
         .onTapGesture {

@@ -64,6 +64,8 @@ struct ContentView: View {
         .sheet(isPresented: $showingTaskDetail) {
             EditView(taskViewData: TaskViewData())
         }
+        .navigationViewStyle(StackNavigationViewStyle())
+        
 
         .onReceive(timer) { input in
             self.dummy.toggle()
