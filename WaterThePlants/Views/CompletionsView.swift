@@ -18,9 +18,7 @@ struct CompletionsView: View {
                     .foregroundColor(dummy ? colorFor(comp) : colorFor(comp))
             }
         }
-        .padding()
-       
-
+        .padding(.vertical)
     }
     
     func maxTimes() -> Int {

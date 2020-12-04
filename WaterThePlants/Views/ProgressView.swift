@@ -12,13 +12,20 @@ struct ProgressView: View {
       // showingTaskStatus == .running ? .trailing : .leading
         .leading
     }
+    var circleSize: CGFloat {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return 160
+        } else {
+            return 230
+        }
+    }
         
     var body: some View {
         HStack {
             ZStack {
                 ProgressBar(task: task, dummy: $dummy)
                     .padding()
-                    .frame(width: 200, height: 200)
+                    .frame(width: circleSize, height: circleSize)
                 Text(task.name ?? "No Task")
                     .font(.title)
             }
@@ -37,7 +44,7 @@ struct ProgressView: View {
             .transition(.move(edge: .bottom))
             .actionSheet(isPresented: $showTaskStatusAlert) {
                 ActionSheet(title: Text("Task Action"),
-                            buttons: [.destructive(Text("Cancel")),
+                            buttons: [.default(Text("Cancel")),
                                       .default(Text("Done")) {
                                         task.taskDone()
                                         dummy.toggle()
@@ -50,6 +57,9 @@ struct ProgressView: View {
                                       },
                                       .default(Text("Edit")) {
                                         showingTaskEdit = true
+                                      },
+                                      .destructive(Text("Delete")) {
+                                        // delete task
                                       }
                             ]
                             )

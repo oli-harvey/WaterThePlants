@@ -28,7 +28,7 @@ struct ProgressText: View {
                 }
             }
         }
-        .font(.subheadline)
+        .font(.caption)
         .foregroundColor(dummy ? .primary : .primary)
     }
 }
