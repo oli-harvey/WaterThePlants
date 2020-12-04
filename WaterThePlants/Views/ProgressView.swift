@@ -14,23 +14,25 @@ struct ProgressView: View {
     }
         
     var body: some View {
-        HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
+        HStack {
             ZStack {
                 ProgressBar(task: task, dummy: $dummy)
                     .padding()
-                    .frame(minWidth: 150, minHeight: 150)
+                    .frame(width: 200, height: 200)
                 Text(task.name ?? "No Task")
                     .font(.title)
             }
-            VStack(alignment: .leading) {
                 if showingText  {
-                    ProgressText(task: task, dummy: $dummy)
-                    if task.repetitionStatus != .none {
-                        CompletionsView(task: task, dummy: $dummy)
+                    VStack {
+                        if task.repetitionStatus != .none {
+                            Spacer()
+                        }
+                        ProgressText(task: task, dummy: $dummy)
+                        if task.repetitionStatus != .none {
+                            CompletionsView(task: task, dummy: $dummy)
+                        } 
                     }
                 }
-            }
-            Spacer()
         }
             .transition(.move(edge: .bottom))
             .actionSheet(isPresented: $showTaskStatusAlert) {

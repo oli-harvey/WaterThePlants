@@ -30,7 +30,7 @@ struct ContentView: View {
                     .padding()
                 }
                     .pickerStyle(SegmentedPickerStyle())
-                FilteredList(filter: showingTaskStatus.rawValue, showingTaskDetail: $showingTaskDetail, dummy: $dummy)
+                FilteredGrid(filter: showingTaskStatus.rawValue, showingTaskDetail: $showingTaskDetail, dummy: $dummy)
             //        .transition(.move(edge: moveIn))
 
             }

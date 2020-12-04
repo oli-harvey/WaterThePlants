@@ -115,7 +115,7 @@ struct EditView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     },
                 trailing:
-                    Button(taskViewData.editting ? "Edit" : "Add") {
+                    Button(taskViewData.editting ? "Save" : "Add") {
                         do {
                             try saveTask()
                             self.presentationMode.wrappedValue.dismiss()
