@@ -59,7 +59,10 @@ struct ProgressView: View {
                                         showingTaskEdit = true
                                       },
                                       .destructive(Text("Delete")) {
-                                        // delete task
+                                        withAnimation {
+                                            viewContext.delete(task)
+                                        }
+                                        save()
                                       }
                             ]
                             )
