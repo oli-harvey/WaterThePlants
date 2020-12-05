@@ -11,7 +11,7 @@ struct FilteredGrid: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Binding var showingTaskDetail: Bool
     var dueWithin: TimePart = .year
-    var moveIn: Edge
+//    var moveIn: Edge
     var fetchRequest: FetchRequest<Task>
     private var tasks: FetchedResults<Task> { fetchRequest.wrappedValue }
     @Binding var dummy: Bool
@@ -24,7 +24,7 @@ struct FilteredGrid: View {
         fetchRequest = FetchRequest<Task>(entity: Task.entity(),
                                           sortDescriptors: [NSSortDescriptor(keyPath: \Task.dueDate, ascending: true)],
                                           predicate: NSPredicate(format: "taskStatusValue == %@", filter))
-        self.moveIn = UIDevice.current.userInterfaceIdiom == .phone ? .trailing : .top
+   //     self.moveIn = UIDevice.current.userInterfaceIdiom == .phone ? .trailing : .top
         self._dummy = dummy
         self._showingTaskDetail = showingTaskDetail
         self.dueWithin = dueWithin
@@ -36,7 +36,8 @@ struct FilteredGrid: View {
                 ForEach(tasks.filter {$0.dueWithinTimeParts.contains(dueWithin)}) { task in
                      ProgressView(task: task, dummy: $dummy)
                         .padding(.vertical)
-                        .transition(.move(edge: moveIn))
+                     //   .transition(.move(edge: moveIn))
+                        .transition(.scale)
                  }
              }
          }

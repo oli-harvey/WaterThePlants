@@ -26,7 +26,7 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 // filter controls
-                Picker("Task Status", selection: $showingTaskStatus.animation(Animation.easeOut(duration: 0.1))) {
+                Picker("Task Status", selection: $showingTaskStatus.animation(Animation.easeOut(duration: 0.4))) {
                     ForEach(TaskStatus.allCases, id: \.self) { status in
                         Text(status.rawValue)
                     }
@@ -34,7 +34,7 @@ struct ContentView: View {
                 }
                     .pickerStyle(SegmentedPickerStyle())
                 if showingTaskStatus == .running {
-                    Picker("Due within", selection: $dueWithin.animation(.easeOut(duration: 0.1))) {
+                    Picker("Due within", selection: $dueWithin.animation(.easeOut(duration: 0.4))) {
                         ForEach(timePartsToSelect, id: \.self) { timePart in
                             Text(timePart.rawValue)
                         }
