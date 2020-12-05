@@ -10,6 +10,7 @@ import SwiftUI
 struct FilteredGrid: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Binding var showingTaskDetail: Bool
+    var dueWithin: TimePart = .year
     var moveIn: Edge
     var fetchRequest: FetchRequest<Task>
     private var tasks: FetchedResults<Task> { fetchRequest.wrappedValue }
@@ -18,22 +19,24 @@ struct FilteredGrid: View {
     let columns = [
         GridItem(.adaptive(minimum: 400))
     ]
-    init(filter: String, showingTaskDetail: Binding<Bool>, dummy: Binding<Bool>) {
+    init(filter: String, showingTaskDetail: Binding<Bool>, dueWithin: TimePart, dummy: Binding<Bool>) {
         
         fetchRequest = FetchRequest<Task>(entity: Task.entity(),
                                           sortDescriptors: [NSSortDescriptor(keyPath: \Task.dueDate, ascending: true)],
                                           predicate: NSPredicate(format: "taskStatusValue == %@", filter))
-        self.moveIn = TaskStatus(rawValue: filter) == .running ? .trailing : .leading
+        self.moveIn = UIDevice.current.userInterfaceIdiom == .phone ? .trailing : .top
         self._dummy = dummy
         self._showingTaskDetail = showingTaskDetail
+        self.dueWithin = dueWithin
     }
     
     var body: some View {
         ScrollView {
              LazyVGrid(columns: columns, spacing: 20) {
-                 ForEach(tasks) { task in
+                ForEach(tasks.filter {$0.dueWithinTimeParts.contains(dueWithin)}) { task in
                      ProgressView(task: task, dummy: $dummy)
                         .padding(.vertical)
+                        .transition(.move(edge: moveIn))
                  }
              }
          }

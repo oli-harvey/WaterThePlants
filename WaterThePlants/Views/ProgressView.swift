@@ -41,7 +41,6 @@ struct ProgressView: View {
                     }
                 }
         }
-            .transition(.move(edge: .bottom))
             .actionSheet(isPresented: $showTaskStatusAlert) {
                 ActionSheet(title: Text("Task Action"),
                             buttons: [.default(Text("Cancel")),

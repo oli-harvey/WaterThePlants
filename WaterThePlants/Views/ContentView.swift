@@ -11,6 +11,8 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var showingTaskStatus: TaskStatus = .running
+    @State var dueWithin: TimePart = .year
+    var timePartsToSelect: [TimePart] = [.day, .week, .month, .year]
     @State var showingTaskDetail = false
     @State var dummy = false
     var moveIn: Edge {
@@ -23,32 +25,44 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Picker("Task Status", selection: $showingTaskStatus.animation(.default)) {
+                // filter controls
+                Picker("Task Status", selection: $showingTaskStatus.animation(Animation.easeOut(duration: 0.1))) {
                     ForEach(TaskStatus.allCases, id: \.self) { status in
                         Text(status.rawValue)
                     }
                     .padding()
                 }
                     .pickerStyle(SegmentedPickerStyle())
-                FilteredGrid(filter: showingTaskStatus.rawValue, showingTaskDetail: $showingTaskDetail, dummy: $dummy)
-            //        .transition(.move(edge: moveIn))
-
+                if showingTaskStatus == .running {
+                    Picker("Due within", selection: $dueWithin.animation(.easeOut(duration: 0.1))) {
+                        ForEach(timePartsToSelect, id: \.self) { timePart in
+                            Text(timePart.rawValue)
+                        }
+                        .padding()
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                }
+                // results
+                FilteredGrid(filter: showingTaskStatus.rawValue, showingTaskDetail: $showingTaskDetail, dueWithin: dueWithin, dummy: $dummy)
             }
             .padding(.vertical)
             .navigationBarTitle("", displayMode: .inline)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    HStack {
-                        Image("Logo")
-                            .resizable()
-                            .frame(width: 40, height:40, alignment: .leading)
-                            .cornerRadius(10)
-                            .padding(.vertical)
-                        Text("Water the Plants")
-                            .font(.largeTitle)
-                            .padding(.vertical)
+                    VStack {
+                        HStack {
+                            Image("Logo")
+                                .resizable()
+                                .frame(width: 40, height:40, alignment: .leading)
+                                .cornerRadius(10)
+                                .padding(.vertical)
+                            Text("Water the Plants")
+                                .font(.largeTitle)
+                                .padding(.vertical)
+                        }
+                        .padding()
+                        Text("") //  to seperate header better
                     }
-                    .padding()
                     
                 }
                 ToolbarItemGroup(placement: .bottomBar) {

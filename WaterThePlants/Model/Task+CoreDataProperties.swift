@@ -148,8 +148,6 @@ extension Task {
             taskStatus = .done
         } else {
             taskStatus = .running
-   //         let duration = dueDate! - completionDate!
-//            dueDate = dueDate?.addingTimeInterval(duration)
             let newDue = dueEvery.seconds() * Double(dueEveryAmount)
             dueDate = completionDate?.addingTimeInterval(newDue)
             scheduleNotification()
@@ -203,5 +201,35 @@ extension Task {
         guard let id = self.notificationID else { return }
         center.removeDeliveredNotifications(withIdentifiers: [id])
         center.removePendingNotificationRequests(withIdentifiers: [id])
+    }
+}
+
+extension Task {
+    var dueWithinTimeParts: [TimePart] {
+        let calendar = Calendar.current
+        //Get today's beginning & end
+        let dayStart = calendar.startOfDay(for: Date()) // eg. 2016-10-10 00:00:00
+        let dayEnd = calendar.date(byAdding: .day, value: 1, to: dayStart)!
+        let weekEnd = calendar.date(byAdding: .day , value: 7, to: dayStart)!
+        let month = calendar.component(.month, from: Date())
+        let year = calendar.component(.year, from: Date())
+        
+        var dueWithinTimeParts = [TimePart]()
+        
+        if let dueDate = dueDate {
+            if dueDate <= dayEnd {
+                dueWithinTimeParts.append(.day)
+            }
+            if dueDate <= weekEnd {
+                dueWithinTimeParts.append(.week)
+            }
+            if month == calendar.component(.month, from: dueDate) {
+                dueWithinTimeParts.append(.month)
+            }
+            if year == calendar.component(.year, from: dueDate) {
+                dueWithinTimeParts.append(.year)
+            }
+        }
+        return dueWithinTimeParts
     }
 }
