@@ -8,6 +8,11 @@ struct ProgressView: View {
     
     @Binding var dummy: Bool
     @State var showTaskStatusAlert = false
+    @State var doneSymbolSize: CGFloat = 0
+    var doneSymbolSizeMax: CGFloat = 14
+    @State var doneSymbolOpacity: Double = 0
+    @State var doneSymbolColor: Color = .green
+    @State var doneSymbol: String = "checkmark.circle"
     var moveIn: Edge {
       // showingTaskStatus == .running ? .trailing : .leading
         .leading
@@ -28,6 +33,11 @@ struct ProgressView: View {
                     .frame(width: circleSize, height: circleSize)
                 Text(task.name ?? "No Task")
                     .font(.title)
+                // zooming icon here
+                Image(systemName: doneSymbol)
+                    .scaleEffect(doneSymbolSize)
+                    .opacity(doneSymbolOpacity)
+                    .foregroundColor(doneSymbolColor)
             }
                 if showingText  {
                     VStack {
@@ -46,11 +56,15 @@ struct ProgressView: View {
                             buttons: [.default(Text("Cancel")),
                                       .default(Text("Done")) {
                                         task.taskDone()
+                                        withAnimation{ showingText = true }
+                                        doneSymbolAnimation(symbol: "checkmark.circle")
                                         dummy.toggle()
                                         save()
                                       },
                                       .default(Text("Skip")) {
                                         task.skipDone()
+                                        withAnimation{ showingText = true }
+                                        doneSymbolAnimation(symbol: "minus.circle")
                                         dummy.toggle()
                                         save()
                                       },
@@ -77,6 +91,9 @@ struct ProgressView: View {
             }
         }
         .onLongPressGesture {
+            withAnimation {
+                showingText = true
+            }
             showTaskStatusAlert = true
         }
     }
@@ -87,6 +104,32 @@ struct ProgressView: View {
             print(error.localizedDescription)
         } catch {
             print("made up error")
+        }
+    }
+    func doneSymbolAnimation(symbol: String) {
+        // check if showingtext is false, show it and add extra delay if not
+        let scaleUpDuration = 0.4
+        let fadeOutDuration = 0.05
+        let shrinkDuration = 0.001
+    
+        doneSymbol = symbol
+        doneSymbolColor = doneSymbol == "checkmark.circle" ? .green : .red
+        withAnimation(.easeIn(duration: scaleUpDuration)) {
+            doneSymbolSize = doneSymbolSizeMax
+            doneSymbolOpacity = 0.7
+            
+        }
+        let deadline = DispatchTime.now() + scaleUpDuration
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
+            withAnimation(Animation.linear(duration: fadeOutDuration)) {
+                doneSymbolOpacity = 0
+            }
+        }
+        let deadline2 = DispatchTime.now() + scaleUpDuration + fadeOutDuration
+        DispatchQueue.main.asyncAfter(deadline: deadline2) {
+            withAnimation(Animation.linear(duration: shrinkDuration)) {
+                doneSymbolSize = 0
+            }
         }
     }
 }

@@ -10,12 +10,22 @@ import SwiftUI
 struct CompletionsView: View {
     var task: Task
     @Binding var dummy: Bool
+    @State var doneSymbolSize: CGFloat = 1
+    var doneSymbolSizeMax: CGFloat = 3
+//    @State var doneSymbolOpacity: Double = 0
+//    @State var doneSymbolColor: Color = .green
+//    @State var doneSymbol: String = "checkmark.circle"
     
     var body: some View {
         HStack {
-            ForEach(0..<maxTimes()) { comp in
+            ForEach(0 ..< maxTimes()) { comp in
                 Image(systemName: imageNameFor(comp))
                     .foregroundColor(dummy ? colorFor(comp) : colorFor(comp))
+                    .transition(.scale)
+                    .scaleEffect(sizeFor(comp))
+                    .onChange(of: imageNameFor(comp), perform: { value in
+                        doneSymbolAnimation(symbol: value, comp: comp)
+                    })
             }
         }
         .padding(.vertical)
@@ -31,7 +41,7 @@ struct CompletionsView: View {
         } else if task.lastCompletions[comp] {
             return "checkmark.circle"
         } else {
-            return "multiply.circle"
+            return "minus.circle"
         }
     }
     
@@ -42,6 +52,25 @@ struct CompletionsView: View {
             return .green
         } else {
             return .red
+        }
+    }
+    func doneSymbolAnimation(symbol: String, comp: Int) {
+        withAnimation(.easeIn(duration: 0.4)) {
+            doneSymbolSize = doneSymbolSizeMax
+        }
+
+        let deadline2 = DispatchTime.now() + 0.45
+        DispatchQueue.main.asyncAfter(deadline: deadline2) {
+            withAnimation(Animation.linear(duration: 0.001)) {
+                doneSymbolSize = 1
+            }
+        }
+    }
+    func sizeFor(_ comp: Int) -> CGFloat {
+        if comp == maxTimes() - 1 {
+            return doneSymbolSize
+        } else {
+            return 1
         }
     }
 }
