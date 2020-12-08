@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FilteredGrid: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @Binding var showingTaskDetail: Bool
+//    @Binding var showingTaskDetail: Bool
     var dueFilterOff: Bool = false
     var dueWithin: TimePart = .year
 //    var moveIn: Edge
@@ -20,14 +20,14 @@ struct FilteredGrid: View {
     let columns = [
         GridItem(.adaptive(minimum: 400))
     ]
-    init(filter: String, showingTaskDetail: Binding<Bool>, dueFilterOff: Bool, dueWithin: TimePart, dummy: Binding<Bool>) {
+    init(filter: String, dueFilterOff: Bool, dueWithin: TimePart, dummy: Binding<Bool>) {
         
         fetchRequest = FetchRequest<Task>(entity: Task.entity(),
                                           sortDescriptors: [NSSortDescriptor(keyPath: \Task.dueDate, ascending: true)],
                                           predicate: NSPredicate(format: "taskStatusValue == %@", filter))
    //     self.moveIn = UIDevice.current.userInterfaceIdiom == .phone ? .trailing : .top
         self._dummy = dummy
-        self._showingTaskDetail = showingTaskDetail
+//        self._showingTaskDetail = showingTaskDetail
         self.dueWithin = dueWithin
         self.dueFilterOff = dueFilterOff
     }

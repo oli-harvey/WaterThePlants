@@ -55,17 +55,15 @@ struct ProgressView: View {
                 ActionSheet(title: Text("Task Action"),
                             buttons: [.default(Text("Cancel")),
                                       .default(Text("Done")) {
-                                        task.taskDone()
+                                        Sounds.playSounds(soundfile: "success3.mp3")
                                         withAnimation{ showingText = true }
                                         doneSymbolAnimation(symbol: "checkmark.circle")
-                                        dummy.toggle()
+                                        simpleSuccess()
                                         save()
                                       },
                                       .default(Text("Skip")) {
-                                        task.skipDone()
                                         withAnimation{ showingText = true }
                                         doneSymbolAnimation(symbol: "minus.circle")
-                                        dummy.toggle()
                                         save()
                                       },
                                       .default(Text("Edit")) {
@@ -111,6 +109,7 @@ struct ProgressView: View {
         let scaleUpDuration = 0.4
         let fadeOutDuration = 0.05
         let shrinkDuration = 0.001
+        let doneUpdateDelay = 0.5
     
         doneSymbol = symbol
         doneSymbolColor = doneSymbol == "checkmark.circle" ? .green : .red
@@ -131,6 +130,22 @@ struct ProgressView: View {
                 doneSymbolSize = 0
             }
         }
+        let deadline3 = DispatchTime.now() + scaleUpDuration + fadeOutDuration + doneUpdateDelay
+        DispatchQueue.main.asyncAfter(deadline: deadline3) {
+            withAnimation {
+                if symbol == "checkmark.circle" {
+                    task.taskDone()
+                } else if symbol == "minus.circle" {
+                    task.skipDone()
+                }
+                showingText = false
+                dummy.toggle()
+            }
+        }
+    }
+    func simpleSuccess() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
 }
 

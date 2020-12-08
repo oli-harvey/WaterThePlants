@@ -9,6 +9,9 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    enum SheetShowingView {
+        case settings, edit
+    }
     @Environment(\.managedObjectContext) private var viewContext
     @State var showingTaskStatus: TaskStatus = .running
     @State var dueWithin: TimePart = .year
@@ -16,7 +19,8 @@ struct ContentView: View {
     @State var dueFilterOff = false
     var timePartsToSelect: [TimePart] = [.day, .week, .month, .year]
     var timePartsToSelectWithAll: [String] = [TimePart.day.rawValue, TimePart.week.rawValue, TimePart.month.rawValue, TimePart.year.rawValue, "All"]
-    @State var showingTaskDetail = false
+    @State var showingSheet = false
+    @State var sheetShowingView = SheetShowingView.edit
     @State var dummy = false
     var moveIn: Edge {
       // showingTaskStatus == .running ? .trailing : .leading
@@ -56,7 +60,7 @@ struct ContentView: View {
                     .padding(.horizontal)
                 }
                 // results
-                FilteredGrid(filter: showingTaskStatus.rawValue, showingTaskDetail: $showingTaskDetail, dueFilterOff: dueFilterOff, dueWithin: dueWithin, dummy: $dummy)
+                FilteredGrid(filter: showingTaskStatus.rawValue, dueFilterOff: dueFilterOff, dueWithin: dueWithin, dummy: $dummy)
             }
             .padding(.vertical)
             .navigationBarTitle("", displayMode: .inline)
@@ -81,7 +85,12 @@ struct ContentView: View {
                 }
                 ToolbarItemGroup(placement: .bottomBar) {
                     Spacer()
-                    Button(action: {showingTaskDetail = true}) {
+                    Button(action: {showingSheet = true; sheetShowingView = .settings}) {
+                        Label("Settings", systemImage: "questionmark.circle")
+                            .font(.largeTitle)
+                    }
+              
+                    Button(action: {showingSheet = true; sheetShowingView = .edit}) {
                         Label("Add Task", systemImage: "plus.circle")
                             .font(.largeTitle)
                     }
@@ -89,11 +98,17 @@ struct ContentView: View {
             }
             
         } // NavigationView
-        .sheet(isPresented: $showingTaskDetail) {
-            EditView(taskViewData: TaskViewData())
-        }
+
         .navigationViewStyle(StackNavigationViewStyle())
-        
+        .sheet(isPresented: $showingSheet) {
+            switch sheetShowingView {
+            case .edit:
+                EditView(taskViewData: TaskViewData())
+            case .settings:
+                SettingsView()
+            }
+            
+        }
 
         .onReceive(timer) { input in
             self.dummy.toggle()
@@ -107,3 +122,13 @@ struct ContentView_Previews: PreviewProvider {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
+
+//if self.activeSheet == .first {
+//                    Text("First modal view")
+//                }
+//                else {
+//                    Text("Only the second modal view works!")
+//                }
+//.sheet(isPresented: $showingSettings) {
+//    SettingsView()
+//}

@@ -67,7 +67,7 @@ struct CompletionsView: View {
         }
     }
     func sizeFor(_ comp: Int) -> CGFloat {
-        if comp == maxTimes() - 1 {
+        if comp == task.lastCompletions.count - 1 {
             return doneSymbolSize
         } else {
             return 1
