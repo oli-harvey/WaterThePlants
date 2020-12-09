@@ -32,6 +32,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
+                IntermediateGradientView()
                 // filter controls
                 Picker("Task Status", selection: $showingTaskStatus.animation(Animation.easeOut(duration: 0.4))) {
                     ForEach(TaskStatus.allCases, id: \.self) { status in

@@ -29,7 +29,6 @@ extension Task {
     @NSManaged public var timesSkipped: Int64
     @NSManaged public var lastCompletionsValue: String
     @NSManaged public var notificationID: String?
-    
 }
 
 extension Task : Identifiable {
@@ -132,16 +131,23 @@ extension Task {
     func taskDone() {
         timesCompleted += 1
         addCompletion(completed: true)
-        updateRepetitions()
+        let wait = beingEditted ? 0.3 : 0.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + wait) {
+            self.updateRepetitions()
+        }
+        
     }
     func skipDone() {
         timesSkipped += 1
         addCompletion(completed: false)
-        updateRepetitions()
+        let wait = beingEditted ? 0.3 : 0.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + wait) {
+            self.updateRepetitions()
+        }
     }
     func updateRepetitions() {
         completionDate = Date()
-        
+        cancelNotification()
         if timesCompleted + timesSkipped >= repetitions && repetitionStatus != .forever  {
             taskStatus = .done
         } else if repetitionStatus == .none {
@@ -233,3 +239,5 @@ extension Task {
         return dueWithinTimeParts
     }
 }
+
+

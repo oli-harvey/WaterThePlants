@@ -7,4 +7,5 @@ public class Task: NSManagedObject {
     deinit {
         cancelNotification()
     }
+    var beingEditted = false
 }
