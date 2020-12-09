@@ -112,7 +112,9 @@ extension Task {
         CGFloat(timeElapsed / totalTime)
     }
     var colour: Color {
-        Color(red: Double(percentComplete), green: Double(1 - percentComplete), blue: 0)
+        let colors: [UIColor] = [.green, .orange, .red]
+        return Color(colors.intermediate(percentage: percentComplete))
+        //Color(red: Double(percentComplete), green: Double(1 - percentComplete), blue: 0)
     }
     var completionDescTime: String {
         switch taskStatus {
@@ -131,7 +133,7 @@ extension Task {
     func taskDone() {
         timesCompleted += 1
         addCompletion(completed: true)
-        let wait = beingEditted ? 0.3 : 0.0
+        let wait = beingEditted ? 0.5 : 0.0
         DispatchQueue.main.asyncAfter(deadline: .now() + wait) {
             self.updateRepetitions()
         }
@@ -140,7 +142,7 @@ extension Task {
     func skipDone() {
         timesSkipped += 1
         addCompletion(completed: false)
-        let wait = beingEditted ? 0.3 : 0.0
+        let wait = beingEditted ? 0.5 : 0.0
         DispatchQueue.main.asyncAfter(deadline: .now() + wait) {
             self.updateRepetitions()
         }

@@ -29,18 +29,3 @@ extension Array where Element: UIColor {
         }
     }
 }
-
-struct IntermediateGradientView: View {
-    @State private var percentage: CGFloat = 0.0
-
-    let colors: [UIColor] = [.red, .orange, .green]
-
-    var body: some View {
-        VStack {
-            Rectangle()
-                .fill(Color(colors.intermediate(percentage: $percentage.wrappedValue)))
-
-            Slider(value: $percentage, in: 0...1)
-        }
-    }
-}

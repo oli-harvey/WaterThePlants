@@ -37,7 +37,7 @@
 		939F50DF257D3FFF001B31AB /* success3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 939F50DE257D3FFF001B31AB /* success3.mp3 */; };
 		939F50E4257D4716001B31AB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939F50E3257D4716001B31AB /* SettingsView.swift */; };
 		939F50EF25800310001B31AB /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939F50EE25800310001B31AB /* NotificationsView.swift */; };
-		939F50FA258155A8001B31AB /* GradientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939F50F9258155A8001B31AB /* GradientTest.swift */; };
+		939F50FA258155A8001B31AB /* ArrayColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939F50F9258155A8001B31AB /* ArrayColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,7 +95,7 @@
 		939F50DE257D3FFF001B31AB /* success3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success3.mp3; sourceTree = "<group>"; };
 		939F50E3257D4716001B31AB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		939F50EE25800310001B31AB /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
-		939F50F9258155A8001B31AB /* GradientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTest.swift; sourceTree = "<group>"; };
+		939F50F9258155A8001B31AB /* ArrayColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				9397DF9A255718A80051BE06 /* WaterThePlants.xcdatamodeld */,
+				939F50F9258155A8001B31AB /* ArrayColorExtension.swift */,
 				9397DFD925571ED80051BE06 /* enums */,
 				9397DFC825571E170051BE06 /* Task+CoreDataClass.swift */,
 				9397DFC925571E170051BE06 /* Task+CoreDataProperties.swift */,
@@ -209,7 +210,6 @@
 				9394E43B256D91AE00CB8328 /* EditView.swift */,
 				9397E01E255861720051BE06 /* ProgressBar.swift */,
 				9397E023255861E80051BE06 /* ProgressView.swift */,
-				939F50F9258155A8001B31AB /* GradientTest.swift */,
 				939F50E3257D4716001B31AB /* SettingsView.swift */,
 				9397E030255869E20051BE06 /* ProgressText.swift */,
 				9397E02B255862500051BE06 /* TaskControls.swift */,
@@ -381,7 +381,7 @@
 				9397DFE325571F350051BE06 /* RepetitionStatus.swift in Sources */,
 				9397E01F255861720051BE06 /* ProgressBar.swift in Sources */,
 				9397DFED25571FE40051BE06 /* Date.swift in Sources */,
-				939F50FA258155A8001B31AB /* GradientTest.swift in Sources */,
+				939F50FA258155A8001B31AB /* ArrayColorExtension.swift in Sources */,
 				939F50DA257D3F7A001B31AB /* Sounds.swift in Sources */,
 				9397E00A2557FFC30051BE06 /* TaskError.swift in Sources */,
 				9394E4152566F70700CB8328 /* CompletionsView.swift in Sources */,
