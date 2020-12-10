@@ -3,11 +3,14 @@ import SwiftUI
 //modified slightly from this answer: https://stackoverflow.com/a/59996029/3505188
 extension Array where Element: UIColor {
     func intermediate(percentage: CGFloat) -> UIColor {
+        let cappedPercentage = Swift.min(1, Swift.max(percentage, 0))
         switch percentage {
         case 0: return first ?? .clear
         case 1: return last ?? .clear
         default:
-            let approxIndex = percentage / (1 / CGFloat(count - 1))
+            let approxIndex = cappedPercentage / (1 / CGFloat(count - 1))
+            print("percentage : \(cappedPercentage)")
+            print("approx iddex: \(approxIndex)")
             let firstIndex = Int(approxIndex.rounded(.down))
             let secondIndex = Int(approxIndex.rounded(.up))
             let fallbackIndex = Int(approxIndex.rounded())

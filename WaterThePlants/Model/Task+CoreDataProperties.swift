@@ -112,7 +112,15 @@ extension Task {
         CGFloat(timeElapsed / totalTime)
     }
     var colour: Color {
-        let colors: [UIColor] = [.green, .orange, .red]
+        let greenest = UIColor(red: 86 / 255, green: 149 / 255, blue: 35 / 255, alpha: 1)
+        let greenlight = UIColor(red: 175 / 255, green: 192 / 255, blue: 5 / 255, alpha: 1)
+        let amber = UIColor(red: 175 / 255, green: 192 / 255, blue: 0 / 255, alpha: 1)
+        let red = UIColor(red: 198 / 255, green: 44 / 255, blue: 35 / 255, alpha: 1)
+        
+        
+//        let colors: [UIColor] = [.green, .orange, .red]
+        let colors: [UIColor] = [greenest, greenest, greenlight, amber, red]
+        
         return Color(colors.intermediate(percentage: percentComplete))
         //Color(red: Double(percentComplete), green: Double(1 - percentComplete), blue: 0)
     }
