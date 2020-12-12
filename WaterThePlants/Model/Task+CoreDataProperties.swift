@@ -129,9 +129,13 @@ extension Task {
         case .done:
             return "Done"
         default:
-            return timeRemaining.format()
+            return timeRemaining <= 0 ? "Now" : timeRemaining.format()
         }
     }
+    var dueDateDesc: String {
+        timeRemaining <= 0 ? "Due" : dueDate?.dateTimeString() ?? Date().dateTimeString()
+    }
+    
     var lastCompleteTimeSince: TimeInterval {
         Date().timeIntervalSince(completionDate ?? Date())
     }

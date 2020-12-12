@@ -20,6 +20,7 @@ struct CompletionsView: View {
         HStack {
             ForEach(0 ..< maxTimes()) { comp in
                 Image(systemName: imageNameFor(comp))
+                    .padding(-3)
                     .foregroundColor(dummy ? colorFor(comp) : colorFor(comp))
                     .transition(.scale)
                     .scaleEffect(sizeFor(comp))

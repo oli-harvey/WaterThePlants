@@ -28,6 +28,7 @@ struct ProgressView: View {
     var body: some View {
         HStack {
             ZStack {
+                ProgressText2(task: task, dummy: $dummy, showingText: $showingText)
                 ProgressBar(task: task, dummy: $dummy)
                     .padding()
                     .frame(width: circleSize, height: circleSize)
@@ -38,18 +39,31 @@ struct ProgressView: View {
                     .scaleEffect(doneSymbolSize)
                     .opacity(doneSymbolOpacity)
                     .foregroundColor(doneSymbolColor)
-            }
-                if showingText  {
-                    VStack {
-                        if task.repetitionStatus != .none {
+                if showingText {
+                    if task.repetitionStatus != .none {
+                        HStack {
                             Spacer()
+                            VStack {
+                                Spacer()
+                                CompletionsView(task: task, dummy: $dummy)
+                                    .padding(.trailing)
+                            }
                         }
-                        ProgressText(task: task, dummy: $dummy)
-                        if task.repetitionStatus != .none {
-                            CompletionsView(task: task, dummy: $dummy)
-                        } 
+                        
                     }
                 }
+            }
+//                if showingText  {
+//                    VStack {
+////                        if task.repetitionStatus != .none {
+////                            Spacer()
+////                        }
+////                        ProgressText(task: task, dummy: $dummy)
+//                        if task.repetitionStatus != .none {
+//                            CompletionsView(task: task, dummy: $dummy)
+//                        }
+//                    }
+//                }
         }
             .actionSheet(isPresented: $showTaskStatusAlert) {
                 ActionSheet(title: Text("Task Action"),
