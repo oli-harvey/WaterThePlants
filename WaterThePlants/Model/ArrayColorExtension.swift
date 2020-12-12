@@ -9,8 +9,8 @@ extension Array where Element: UIColor {
         case 1: return last ?? .clear
         default:
             let approxIndex = cappedPercentage / (1 / CGFloat(count - 1))
-            print("percentage : \(cappedPercentage)")
-            print("approx iddex: \(approxIndex)")
+//            print("percentage : \(cappedPercentage)")
+//            print("approx iddex: \(approxIndex)")
             let firstIndex = Int(approxIndex.rounded(.down))
             let secondIndex = Int(approxIndex.rounded(.up))
             let fallbackIndex = Int(approxIndex.rounded())

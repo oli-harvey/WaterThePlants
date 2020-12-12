@@ -65,7 +65,7 @@ extension Task {
             return DueType(rawValue: self.dueTypeValue ?? "At") ?? DueType.at
         }
         set {
-            print("setting duetype to \(newValue.rawValue)")
+           // print("setting duetype to \(newValue.rawValue)")
             self.dueTypeValue = newValue.rawValue
         }
     }
