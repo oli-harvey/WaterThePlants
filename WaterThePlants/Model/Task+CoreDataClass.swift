@@ -8,4 +8,6 @@ public class Task: NSManagedObject {
         cancelNotification()
     }
     var beingEditted = false
+    var animationCoolDown = false
+    var shakeLeft = false
 }

@@ -252,9 +252,23 @@ extension Task {
 extension Task {
     func shadowSize() -> CGFloat {
         guard timeRemaining <= 0 else {
+            //return 0
+            return 1
+        }
+        return 1.1
+    }
+    func offset() -> CGFloat {
+        guard timeRemaining <= 0 && taskStatus == .running else {
+            //return 0
             return 0
         }
-        return 1
+//        self.animationCoolDown = true
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            self.animationCoolDown = false
+//        }
+        shakeLeft.toggle()
+        return shakeLeft ? -2.5 : 2.5
+        
     }
 }
 

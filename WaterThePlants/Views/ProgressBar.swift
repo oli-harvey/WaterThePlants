@@ -9,7 +9,7 @@ struct ProgressBar: View {
             ZStack {
                 Circle()
                     .stroke(lineWidth: 20.0)
-                    .opacity(0.3)
+                    .opacity(0.5)
                     .foregroundColor(task.colour)
                 
                 Circle()
@@ -21,10 +21,13 @@ struct ProgressBar: View {
             }
             .contentShape(Circle())
             .foregroundColor(dummy ? .primary : .primary)
-            .shadow(color: Color(red), radius: dummy ? task.shadowSize() : 0 )
-            .shadow(color: .primary, radius: dummy ? task.shadowSize() : 0 )
-            .shadow(color: Color(red), radius: dummy ? task.shadowSize() : 0 )
         }
+        .offset(x: task.offset())
+        .animation(Animation.default.repeatCount(4).speed(6))
+        
+//            .shadow(color: Color(red), radius: dummy ? task.shadowSize() : 0 )
+//            .shadow(color: .primary, radius: dummy ? task.shadowSize() : 0 )
+//            .shadow(color: Color(red), radius: dummy ? task.shadowSize() : 0 )
 
     }
 }
