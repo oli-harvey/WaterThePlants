@@ -258,16 +258,16 @@ extension Task {
         return 1.1
     }
     func offset() -> CGFloat {
-        guard timeRemaining <= 0 && taskStatus == .running else {
+        guard timeRemaining <= 0 && taskStatus == .running && !animationCoolDown else {
             //return 0
             return 0
         }
-//        self.animationCoolDown = true
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            self.animationCoolDown = false
-//        }
+        self.animationCoolDown = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.animationCoolDown = false
+        }
         shakeLeft.toggle()
-        return shakeLeft ? -2.5 : 2.5
+        return shakeLeft ? -5 : 5
         
     }
 }
