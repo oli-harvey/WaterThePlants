@@ -96,9 +96,13 @@ struct EditView: View {
                     }
                     if customCompletionDate {
                         DatePicker("On", selection: $taskViewData.completionDate)
-                        
                     }
                 }// end last completed
+                .onChange(of: customCompletionDate) { customCompletionDate in
+                    if !customCompletionDate {
+                        taskViewData.completionDate = Date()
+                    }
+                }
                 .alert(isPresented: $showingError) {
                     Alert(title: Text(error?.errorTitle ?? "Dont know what you did!"), message: Text(error?.localizedDescription ?? "Unknown Error"), dismissButton: .default(Text("Got it!")))
                 }
