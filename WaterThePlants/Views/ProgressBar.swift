@@ -21,6 +21,9 @@ struct ProgressBar: View {
             }
             .contentShape(Circle())
             .foregroundColor(dummy ? .primary : .primary)
+            .shadow(color: Color(red), radius: dummy ? task.shadowSize() : 0 )
+            .shadow(color: .primary, radius: dummy ? task.shadowSize() : 0 )
+            .shadow(color: Color(red), radius: dummy ? task.shadowSize() : 0 )
         }
 
     }

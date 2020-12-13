@@ -112,12 +112,7 @@ extension Task {
         CGFloat(timeElapsed / totalTime)
     }
     var colour: Color {
-        let greenest = UIColor(red: 86 / 255, green: 149 / 255, blue: 35 / 255, alpha: 1)
-        let greenlight = UIColor(red: 175 / 255, green: 192 / 255, blue: 5 / 255, alpha: 1)
-        let amber = UIColor(red: 175 / 255, green: 192 / 255, blue: 0 / 255, alpha: 1)
-        let red = UIColor(red: 198 / 255, green: 44 / 255, blue: 35 / 255, alpha: 1)
-        
-        
+                
 //        let colors: [UIColor] = [.green, .orange, .red]
         let colors: [UIColor] = [greenest, greenest, greenlight, amber, red]
         
@@ -254,4 +249,17 @@ extension Task {
     }
 }
 
+extension Task {
+    func shadowSize() -> CGFloat {
+        guard timeRemaining <= 0 else {
+            return 0
+        }
+        return 1
+    }
+}
 
+
+let greenest = UIColor(red: 86 / 255, green: 149 / 255, blue: 35 / 255, alpha: 1)
+let greenlight = UIColor(red: 175 / 255, green: 192 / 255, blue: 5 / 255, alpha: 1)
+let amber = UIColor(red: 175 / 255, green: 192 / 255, blue: 0 / 255, alpha: 1)
+let red = UIColor(red: 198 / 255, green: 44 / 255, blue: 35 / 255, alpha: 1)
