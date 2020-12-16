@@ -69,7 +69,7 @@ struct ProgressView: View {
                 ActionSheet(title: Text("Task Action"),
                             buttons: [.default(Text("Cancel")),
                                       .default(Text("Done")) {
-                                        Sounds.playSounds(soundfile: "success3.mp3")
+                                        Sounds.playSounds(soundfile: "successOli.wav")
                                         withAnimation{ showingText = true }
                                         doneSymbolAnimation(symbol: "checkmark.circle")
                                         simpleSuccess()

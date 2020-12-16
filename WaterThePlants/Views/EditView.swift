@@ -107,7 +107,7 @@ struct EditView: View {
                     Alert(title: Text(error?.errorTitle ?? "Dont know what you did!"), message: Text(error?.localizedDescription ?? "Unknown Error"), dismissButton: .default(Text("Got it!")))
                 }
                 .onAppear{
-                    print("printing from editview")
+//                    print("printing from editview")
                     print(taskViewData.name)
                 }
                 
@@ -117,7 +117,8 @@ struct EditView: View {
                 leading:
                     Button("Cancel") {
                         self.presentationMode.wrappedValue.dismiss()
-                    },
+                    }.foregroundColor(.blue)
+                ,
                 trailing:
                     Button(taskViewData.editting ? "Save" : "Add") {
                         do {
@@ -129,8 +130,8 @@ struct EditView: View {
                         } catch {
                             print(error.localizedDescription)
                         }
-                        
                     }
+                    .foregroundColor(.blue)
             )
 
         } // NavigationView

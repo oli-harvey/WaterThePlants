@@ -45,7 +45,7 @@ struct SettingsView_Previews: PreviewProvider {
 struct RateView: View {
     var body: some View {
         VStack {
-            Link("See Water The Plants on the App Store", destination: URL(string: "https://www.hackingwithswift.com/quick-start/swiftui")!)
+            Link("See Water The Plants on the App Store", destination: URL(string: "https://apps.apple.com/us/app/water-the-plants/id1544652292")!)
                 .padding()
                 .foregroundColor(.blue)
             Spacer()
@@ -63,7 +63,7 @@ struct ContactUsView: View {
             Text("Get in Touch")
                 .font(.headline)
                 .padding()
-            Text("Please send feedback to meetwickapps@smail.com")
+            Text("Please send feedback to meetwickapps@gmail.com")
                 .padding()
             Spacer()
         }
